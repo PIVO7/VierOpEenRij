@@ -19,10 +19,10 @@ struct ToyBlock: ViewModifier {
                 RoundedRectangle(cornerRadius: radius, style: .continuous)
                     .fill(fill)
             )
-            .overlay(
+            .overlay {
                 RoundedRectangle(cornerRadius: radius, style: .continuous)
                     .strokeBorder(borderColor, lineWidth: border)
-            )
+            }
             .background(
                 RoundedRectangle(cornerRadius: radius, style: .continuous)
                     .fill(shadowColor)

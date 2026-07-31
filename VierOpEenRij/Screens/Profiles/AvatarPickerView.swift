@@ -57,12 +57,12 @@ struct AvatarPickerView: View {
                         } label: {
                             Circle()
                                 .fill(color)
-                                .overlay(
+                                .overlay {
                                     Circle().strokeBorder(
                                         AppTheme.ink,
                                         lineWidth: colorIndex == index ? 3.5 : 1.5
                                     )
-                                )
+                                }
                                 .frame(width: m.tapTarget * 0.8, height: m.tapTarget * 0.8)
                                 .scaleEffect(colorIndex == index ? 1.12 : 1)
                                 // Het bolletje blijft visueel klein, maar het

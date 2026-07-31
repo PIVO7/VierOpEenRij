@@ -139,7 +139,7 @@ struct SettingsView: View {
                     ForEach(Array([palette.coral, palette.amber, palette.mint, palette.sky].enumerated()), id: \.offset) { _, color in
                         Circle()
                             .fill(color)
-                            .overlay(Circle().strokeBorder(palette.ink, lineWidth: 1.5))
+                            .overlay { Circle().strokeBorder(palette.ink, lineWidth: 1.5) }
                             .frame(width: m.captionSize + 4, height: m.captionSize + 4)
                     }
                 }

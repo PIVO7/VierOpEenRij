@@ -15,9 +15,12 @@ struct ToyDialog: View {
 
     var body: some View {
         ZStack {
+            // Tikken om te sluiten is een extraatje voor ziende gebruikers;
+            // VoiceOver krijgt de knoppen op de kaart, niet dit vlak.
             AppTheme.ink.opacity(0.5)
                 .ignoresSafeArea()
                 .onTapGesture(perform: onCancel)
+                .accessibilityHidden(true)
 
             VStack(spacing: m.gutter * 0.8) {
                 Text(title)

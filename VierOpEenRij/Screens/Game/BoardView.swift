@@ -57,7 +57,7 @@ struct BoardView: View {
                 ForEach(0..<Board.rows, id: \.self) { row in
                     Circle()
                         .fill(AppTheme.sunk)
-                        .overlay(Circle().strokeBorder(AppTheme.ink.opacity(0.55), lineWidth: m.thinBorder * 0.8))
+                        .overlay { Circle().strokeBorder(AppTheme.ink.opacity(0.55), lineWidth: m.thinBorder * 0.8) }
                         .frame(width: cell, height: cell)
                         .position(center(column: column, row: row, cell: cell, boardHeight: height))
                 }

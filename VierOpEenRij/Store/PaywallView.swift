@@ -123,9 +123,12 @@ struct PaywallView: View {
 
     private func gateOverlay(_ question: ParentalGateQuestion) -> some View {
         ZStack {
+            // Tikken om te sluiten is een extraatje voor ziende gebruikers;
+            // VoiceOver krijgt de opties op de kaart, niet dit vlak.
             AppTheme.ink.opacity(0.5)
                 .ignoresSafeArea()
                 .onTapGesture { closeGate() }
+                .accessibilityHidden(true)
 
             VStack(spacing: m.gutter * 0.8) {
                 Text("Vraag even aan papa of mama")

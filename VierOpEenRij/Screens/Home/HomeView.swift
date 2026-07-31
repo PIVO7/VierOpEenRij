@@ -119,8 +119,7 @@ struct HomeView: View {
 
     private func menuLabel(_ title: String, subtitle: String, tint: Color, discColorIndex: Int) -> some View {
         HStack(spacing: m.gutter) {
-            DiscView(colorIndex: discColorIndex)
-                .frame(width: m.avatarSize * 0.66, height: m.avatarSize * 0.66)
+            DiscView(colorIndex: discColorIndex, size: m.avatarSize * 0.66)
                 .frame(width: m.avatarSize + 2, height: m.avatarSize + 2)
                 .toyBlock(fill: tint, radius: m.cellCorner + 2, depth: 0, border: m.thinBorder + 0.5)
 

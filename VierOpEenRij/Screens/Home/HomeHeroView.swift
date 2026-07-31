@@ -26,8 +26,7 @@ struct HomeHeroView: View {
     }
 
     private func heroDisc(colorIndex: Int, tilt: Double) -> some View {
-        DiscView(colorIndex: colorIndex, depth: m.depth)
-            .frame(width: m.discSize * 1.15, height: m.discSize * 1.15)
+        DiscView(colorIndex: colorIndex, size: m.discSize * 1.15, depth: m.depth)
             .rotationEffect(.degrees(tilt))
     }
 

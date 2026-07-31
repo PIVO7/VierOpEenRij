@@ -49,7 +49,7 @@ final class GameEngine {
 
     /// Aantal stenen dat deze speler zelf al legde.
     func discCount(of playerIndex: Int) -> Int {
-        moves.indices.filter { self.playerIndex(forMove: $0) == playerIndex }.count
+        moves.indices.count(where: { self.playerIndex(forMove: $0) == playerIndex })
     }
 
     var snapshot: GameSnapshot {

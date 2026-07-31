@@ -8,6 +8,8 @@ struct BoardView: View {
     let winningCells: [Board.Cell]
     /// Spelerindex → schijfkleur (0 koraal, 1 amber).
     let discIndex: (Int) -> Int
+    /// Spelerindex → naam; voedt de VoiceOver-beschrijving per kolom.
+    let playerName: (Int) -> String
     let isEnabled: Bool
     let onDrop: (Int) -> Void
 
@@ -69,8 +71,7 @@ struct BoardView: View {
         ZStack {
             ForEach(occupiedCells, id: \.cell) { entry in
                 let point = center(column: entry.cell.column, row: entry.cell.row, cell: cell, boardHeight: height)
-                DiscView(colorIndex: discIndex(entry.player))
-                    .frame(width: cell * 0.94, height: cell * 0.94)
+                DiscView(colorIndex: discIndex(entry.player), size: cell * 0.94)
                     .position(point)
                     // De val: de steen komt van boven de bordrand naar zijn
                     // vakje; het bord knipt het stuk erboven weg.
@@ -88,7 +89,7 @@ struct BoardView: View {
             }
         }
         .frame(width: width, height: height)
-        .clipShape(RoundedRectangle(cornerRadius: m.cardCorner, style: .continuous))
+        .clipShape(.rect(cornerRadius: m.cardCorner))
         .allowsHitTesting(false)
     }
 
@@ -141,10 +142,20 @@ struct BoardView: View {
                 .buttonStyle(.plain)
                 .disabled(!isEnabled || !board.canDrop(in: column))
                 .accessibilityLabel(String(localized: "Kolom \(column + 1)"))
+                .accessibilityValue(columnDescription(column))
                 .accessibilityHint(String(localized: "Laat hier je steen vallen"))
             }
         }
         .frame(width: width, height: height)
+    }
+
+    /// Wat er in een kolom ligt, in woorden — zonder dit is het bord voor
+    /// VoiceOver een raster van naamloze knoppen.
+    private func columnDescription(_ column: Int) -> String {
+        let filled = board.height(of: column)
+        guard filled > 0 else { return String(localized: "leeg") }
+        let top = board[column, filled - 1].map(playerName) ?? ""
+        return String(localized: "\(filled) stenen, bovenste van \(top)")
     }
 }
 
@@ -160,6 +171,7 @@ struct BoardView: View {
         board: board,
         winningCells: [],
         discIndex: { $0 },
+        playerName: { String(localized: "Speler \($0 + 1)") },
         isEnabled: true,
         onDrop: { _ in }
     )

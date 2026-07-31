@@ -20,6 +20,7 @@ struct GameView: View {
     @State private var showTurnBanner = false
     @State private var showExitConfirm = false
     @State private var bannerDismissal: Task<Void, Never>?
+    @State private var resultReveal: Task<Void, Never>?
     @State private var dropPulse = 0
     @State private var turnPulse = 0
     @State private var winPulse = 0
@@ -44,6 +45,7 @@ struct GameView: View {
                     board: engine.board,
                     winningCells: engine.winningCells,
                     discIndex: engine.discIndex(for:),
+                    playerName: { engine.players[$0].name },
                     isEnabled: engine.canDrop,
                     onDrop: drop
                 )
@@ -171,7 +173,7 @@ struct GameView: View {
     // MARK: - Zetten
 
     private func drop(in column: Int) {
-        guard engine.dropDisc(in: column) else { return }
+        engine.dropDisc(in: column)
     }
 
     private func undoLastMove() {
@@ -217,9 +219,12 @@ struct GameView: View {
         recordResult()
         AccessibilityNotification.Announcement(engine.turnMessage).post()
         // De winnende rij eerst even laten zien; daarna pas de eindstand
-        // eroverheen.
-        Task {
+        // eroverheen. Bewaard net als de bannertimer, zodat hij netjes
+        // annuleerbaar is.
+        resultReveal?.cancel()
+        resultReveal = Task {
             try? await Task.sleep(for: .milliseconds(reduceMotion ? 400 : 1400))
+            guard !Task.isCancelled else { return }
             withAnimation(reduceMotion ? .easeOut(duration: 0.15) : .spring(response: 0.35, dampingFraction: 0.8)) {
                 showResult = true
             }

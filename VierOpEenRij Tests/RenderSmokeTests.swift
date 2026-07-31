@@ -36,6 +36,7 @@ final class RenderSmokeTests: XCTestCase {
                 board: engine.board,
                 winningCells: [],
                 discIndex: engine.discIndex(for:),
+                playerName: { engine.players[$0].name },
                 isEnabled: true,
                 onDrop: { _ in }
             )

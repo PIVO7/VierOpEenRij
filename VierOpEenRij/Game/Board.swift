@@ -43,10 +43,6 @@ struct Board: Equatable, Codable {
         availableColumns.isEmpty
     }
 
-    var discCount: Int {
-        grid.reduce(0) { $0 + $1.compactMap(\.self).count }
-    }
-
     /// Laat een steen vallen en meldt waar hij landde, of `nil` als de kolom
     /// vol is.
     @discardableResult

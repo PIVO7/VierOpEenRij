@@ -43,8 +43,7 @@ struct GameHeaderView: View {
                 .foregroundStyle(AppTheme.ink)
                 .lineLimit(1)
                 .minimumScaleFactor(0.65)
-            DiscView(colorIndex: discIndex(index))
-                .frame(width: m.captionSize * 1.3, height: m.captionSize * 1.3)
+            DiscView(colorIndex: discIndex(index), size: m.captionSize * 1.3)
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 6)

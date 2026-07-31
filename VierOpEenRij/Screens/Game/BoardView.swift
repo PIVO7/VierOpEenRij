@@ -29,10 +29,6 @@ struct BoardView: View {
             .position(x: proxy.size.width / 2, y: proxy.size.height / 2)
         }
         .aspectRatio(aspectRatio, contentMode: .fit)
-        .animation(
-            reduceMotion ? .easeOut(duration: 0.15) : .spring(response: 0.42, dampingFraction: 0.68),
-            value: board
-        )
     }
 
     private var aspectRatio: CGFloat {
@@ -78,7 +74,7 @@ struct BoardView: View {
                     .position(point)
                     // De val: de steen komt van boven de bordrand naar zijn
                     // vakje; het bord knipt het stuk erboven weg.
-                    .transition(reduceMotion ? .opacity : .offset(y: -(point.y + cell)))
+                    .transition(discTransition(distance: point.y + cell, row: entry.cell.row))
             }
 
             ForEach(winningCells, id: \.self) { cellPosition in
@@ -86,12 +82,33 @@ struct BoardView: View {
                     .strokeBorder(.white, lineWidth: max(cell * 0.09, 3))
                     .frame(width: cell * 0.7, height: cell * 0.7)
                     .position(center(column: cellPosition.column, row: cellPosition.row, cell: cell, boardHeight: height))
-                    .transition(.opacity)
+                    // Pas nadat de laatste steen geland is; anders staat de
+                    // ring er al terwijl de steen nog valt.
+                    .transition(.opacity.animation(.easeIn(duration: 0.25).delay(reduceMotion ? 0 : 0.6)))
             }
         }
         .frame(width: width, height: height)
         .clipShape(RoundedRectangle(cornerRadius: m.cardCorner, style: .continuous))
         .allowsHitTesting(false)
+    }
+
+    /// De val van een steen. Een gewone veer schoot voorbij zijn doel, zodat
+    /// de steen op het einde even dóór het bord zakte; deze stuit blijft
+    /// altijd boven zijn vakje. Hoe voller de kolom, hoe korter de val en
+    /// dus de animatie. Terugzetten vervaagt gewoon — omgekeerd stuiteren
+    /// zou raar staan.
+    private func discTransition(distance: CGFloat, row: Int) -> AnyTransition {
+        guard !reduceMotion else { return .opacity }
+        let rowsToFall = Board.rows - row
+        let duration = 0.38 + 0.05 * Double(rowsToFall)
+        return .asymmetric(
+            insertion: .modifier(
+                active: DropFall(progress: 0, distance: distance),
+                identity: DropFall(progress: 1, distance: distance)
+            )
+            .animation(.linear(duration: duration)),
+            removal: .opacity.animation(.easeOut(duration: 0.15))
+        )
     }
 
     private struct OccupiedCell {
@@ -149,4 +166,46 @@ struct BoardView: View {
     .padding()
     .background(AppTheme.cream)
     .appMetrics()
+}
+
+/// Zwaartekracht in een modifier: de voortgang loopt lineair van 0 naar 1,
+/// de stuitcurve vertaalt dat naar een versnelde val met twee kleine stuiten
+/// op het vakje. De curve komt nooit boven de 1 uit, dus de steen zakt nooit
+/// door zijn vakje heen.
+///
+/// `@preconcurrency Animatable`: `ViewModifier` is sinds de nieuwe SDK
+/// volledig `@MainActor`, terwijl `Animatable` een nonisolated
+/// `animatableData` eist. SwiftUI evalueert die tijdens transities gewoon op
+/// de main thread, dus de runtime-check is veilig.
+private struct DropFall: ViewModifier, @preconcurrency Animatable {
+    var progress: CGFloat
+    let distance: CGFloat
+
+    var animatableData: CGFloat {
+        get { progress }
+        set { progress = newValue }
+    }
+
+    func body(content: Content) -> some View {
+        content.offset(y: -distance * (1 - Self.bounceOut(progress)))
+    }
+
+    /// De klassieke bounce-easing (Penner): drie parabolen achter elkaar.
+    static func bounceOut(_ t: CGFloat) -> CGFloat {
+        let n1: CGFloat = 7.5625
+        let d1: CGFloat = 2.75
+        var t = t
+        if t < 1 / d1 {
+            return n1 * t * t
+        } else if t < 2 / d1 {
+            t -= 1.5 / d1
+            return n1 * t * t + 0.75
+        } else if t < 2.5 / d1 {
+            t -= 2.25 / d1
+            return n1 * t * t + 0.9375
+        } else {
+            t -= 2.625 / d1
+            return n1 * t * t + 0.984375
+        }
+    }
 }

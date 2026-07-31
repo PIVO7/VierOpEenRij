@@ -177,8 +177,9 @@ final class GameEngine {
         }
     }
 
-    /// Even lang als de valanimatie van een steen in `BoardView`.
-    static let dropDuration = 420
+    /// Ruim genoeg voor de langste valanimatie in `BoardView` (val naar de
+    /// onderste rij plus stuit).
+    static let dropDuration = 700
 
     // MARK: - Privé
 

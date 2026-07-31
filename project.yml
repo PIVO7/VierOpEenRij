@@ -1,0 +1,74 @@
+name: VierOpEenRij
+options:
+  bundleIdPrefix: com.pivo7
+  developmentLanguage: nl
+  createIntermediateGroups: true
+
+settings:
+  base:
+    # Nodig om op een echt toestel te bouwen; de simulator vraagt er niet om.
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: VB6FS3N78T
+    SWIFT_VERSION: 6.0
+    MARKETING_VERSION: 1.0
+    CURRENT_PROJECT_VERSION: 1
+    SUPPORTED_PLATFORMS: iphoneos iphonesimulator
+    TARGETED_DEVICE_FAMILY: '1,2'
+    SUPPORTS_MACCATALYST: NO
+    ALWAYS_SEARCH_USER_PATHS: NO
+    ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+
+targets:
+  VierOpEenRij:
+    type: application
+    platform: iOS
+    deploymentTarget: '17.0'
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.pivo7.vieropeenrij
+        # Meertaligheid: de compiler schrijft alle localiseerbare teksten weg
+        # (stringsdata), zodat de String Catalog compleet te houden is.
+        SWIFT_EMIT_LOC_STRINGS: YES
+        LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Vier op een rij!
+        INFOPLIST_KEY_LSRequiresIPhoneOS: YES
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: 'UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight'
+        INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
+    sources:
+      - path: VierOpEenRij
+
+  VierOpEenRij Tests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: '17.0'
+    sources:
+      - path: VierOpEenRij Tests
+    dependencies:
+      - target: VierOpEenRij
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.pivo7.vieropeenrij.tests
+        GENERATE_INFOPLIST_FILE: YES
+
+schemes:
+  VierOpEenRij:
+    build:
+      targets:
+        VierOpEenRij: all
+        VierOpEenRij Tests: [test]
+    test:
+      targets:
+        - VierOpEenRij Tests
+      # De tests vergelijken Nederlandse zinnen; de testtaal ligt dus vast,
+      # wat de simulatortaal ook is.
+      language: nl
+      region: BE
+    run:
+      config: Debug
+      storeKitConfiguration: VierOpEenRij.storekit
+    archive:
+      config: Release

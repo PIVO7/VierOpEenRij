@@ -11,6 +11,8 @@ struct PaywallView: View {
     @State private var gateQuestion: ParentalGateQuestion?
     @State private var pendingAction: (() async -> Void)?
     @State private var isBusy = false
+    /// Uitleg wanneer een aankoop niet doorging; annuleren blijft stil.
+    @State private var purchaseNotice: String?
 
     private var priceText: String {
         entitlements.familyProduct?.displayPrice ?? "…"
@@ -67,7 +69,7 @@ struct PaywallView: View {
                         } label: {
                             Text("Ontgrendel voor \(priceText)")
                                 .font(AppTheme.rounded(m.buttonTextSize * 0.8))
-                                .foregroundStyle(.white)
+                                .foregroundStyle(AppTheme.ink)
                                 .frame(maxWidth: .infinity)
                                 .frame(height: m.buttonHeight * 0.85)
                         }
@@ -102,6 +104,16 @@ struct PaywallView: View {
             // gezegd gewoon verstandig.
             if let question = gateQuestion {
                 gateOverlay(question)
+            }
+
+            if let purchaseNotice {
+                ToyDialog(
+                    title: String(localized: "Dat lukte niet"),
+                    message: purchaseNotice,
+                    confirmTitle: String(localized: "Oké"),
+                    onConfirm: dismissNotice,
+                    onCancel: dismissNotice
+                )
             }
         }
         .interactiveDismissDisabled(isBusy)
@@ -193,8 +205,29 @@ struct PaywallView: View {
         pendingAction = nil
     }
 
+    /// Annuleren is een keuze en blijft stil; mislukken en wachten-op-ouder
+    /// verdienen uitleg — anders lijkt de knop gewoon kapot.
     private func purchase() async {
-        _ = await entitlements.purchaseFamily()
+        switch await entitlements.purchaseFamily() {
+        case .success, .cancelled:
+            break
+        case .pending:
+            showNotice(String(localized: "De aankoop wacht nog op goedkeuring van een ouder."))
+        case .failed:
+            showNotice(String(localized: "Kopen is niet gelukt. Controleer de internetverbinding en probeer het straks nog eens."))
+        }
+    }
+
+    private func showNotice(_ text: String) {
+        withAnimation(.easeOut(duration: 0.15)) {
+            purchaseNotice = text
+        }
+    }
+
+    private func dismissNotice() {
+        withAnimation(.easeOut(duration: 0.15)) {
+            purchaseNotice = nil
+        }
     }
 }
 

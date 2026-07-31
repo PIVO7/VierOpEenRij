@@ -18,7 +18,7 @@ struct TurnBannerView: View {
 
                 Text(title ?? String(localized: "\(player.name) is aan de beurt"))
                     .font(AppTheme.rounded(m.bodySize))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(AppTheme.ink)
                     .lineLimit(1)
                     .minimumScaleFactor(0.7)
             }

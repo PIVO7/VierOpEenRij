@@ -36,7 +36,7 @@ struct ToyDialog: View {
                 Button(action: onConfirm) {
                     Text(confirmTitle)
                         .font(AppTheme.rounded(m.buttonTextSize * 0.8))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(AppTheme.ink)
                         .frame(maxWidth: .infinity)
                         .frame(height: m.buttonHeight * 0.82)
                 }

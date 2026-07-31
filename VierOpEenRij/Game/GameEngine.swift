@@ -41,9 +41,11 @@ final class GameEngine {
     }
 
     /// De vorige zet mag terug zolang het spel loopt en er een eigen zet te
-    /// herroepen valt. Solo draait ook de tegenzet van de computer mee terug.
+    /// herroepen valt. Solo draait ook de tegenzet van de computer mee
+    /// terug — en ook terwijl de computer nog nadenkt hoeft een kind niet te
+    /// wachten: de denklus ziet na het terugzetten zelf dat hij klaar is.
     var canUndo: Bool {
-        guard canDrop else { return false }
+        guard !isFinished, !currentPlayer.isComputer || isThinking else { return false }
         return moves.indices.contains { !players[playerIndex(forMove: $0)].isComputer }
     }
 

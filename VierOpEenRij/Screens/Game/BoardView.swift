@@ -143,7 +143,12 @@ struct BoardView: View {
                 .disabled(!isEnabled || !board.canDrop(in: column))
                 .accessibilityLabel(String(localized: "Kolom \(column + 1)"))
                 .accessibilityValue(columnDescription(column))
-                .accessibilityHint(String(localized: "Laat hier je steen vallen"))
+                // Geen uitnodiging op een kolom waar niets kan.
+                .accessibilityHint(
+                    isEnabled && board.canDrop(in: column)
+                        ? String(localized: "Laat hier je steen vallen")
+                        : ""
+                )
             }
         }
         .frame(width: width, height: height)

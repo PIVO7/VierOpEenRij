@@ -24,6 +24,15 @@ final class ProfileStoreTests: XCTestCase {
         XCTAssertEqual(reloaded.humanProfiles.map(\.name), ["Lene"])
     }
 
+    func testLongNamesAreTruncated() {
+        let store = ProfileStore(fileURL: fileURL)
+        store.addProfile(name: String(repeating: "a", count: 60))
+        XCTAssertEqual(store.humanProfiles[0].name.count, ProfileStore.maxNameLength)
+
+        store.renameProfile(id: store.humanProfiles[0].id, to: String(repeating: "b", count: 99))
+        XCTAssertEqual(store.humanProfiles[0].name.count, ProfileStore.maxNameLength)
+    }
+
     func testRecordWinUpdatesStreakAndFastestWin() {
         let store = ProfileStore(fileURL: fileURL)
         store.addProfile(name: "Lene")

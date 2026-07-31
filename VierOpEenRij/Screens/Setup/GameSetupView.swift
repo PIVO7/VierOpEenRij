@@ -73,7 +73,7 @@ struct GameSetupView: View {
                         NavigationLink(value: Destination.profiles) {
                             Text("Naar profielen")
                                 .font(AppTheme.rounded(m.buttonTextSize * 0.85))
-                                .foregroundStyle(.white)
+                                .foregroundStyle(AppTheme.ink)
                                 .frame(maxWidth: .infinity)
                                 .frame(height: m.buttonHeight * 0.9)
                         }
@@ -138,7 +138,7 @@ struct GameSetupView: View {
                     Button(action: requestStart) {
                         Text("Start spel")
                             .font(AppTheme.rounded(m.buttonTextSize))
-                            .foregroundStyle(canStart ? .white : AppTheme.offInk)
+                            .foregroundStyle(canStart ? AppTheme.ink : AppTheme.offInk)
                             .frame(maxWidth: .infinity)
                             .frame(height: m.buttonHeight * 0.96)
                     }

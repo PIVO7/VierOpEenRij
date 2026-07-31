@@ -1,14 +1,20 @@
 import Foundation
 import Observation
+import OSLog
 
 @MainActor
 @Observable
 final class ProfileStore {
     private(set) var profiles: [PlayerProfile] = []
 
+    /// Langer wordt het invoerveld én het spelbord onleesbaar; de opslag
+    /// knipt af zodat ook een plak-actie netjes blijft.
+    static let maxNameLength = 24
+
     private let fileURL: URL
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
+    private let logger = Logger(subsystem: "com.pivo7.vieropeenrij", category: "profielen")
 
     init(filename: String = "vieropeenrij-profiles.json") {
         self.fileURL = URL.documentsDirectory.appending(path: filename)
@@ -26,7 +32,7 @@ final class ProfileStore {
     }
 
     func addProfile(name: String) {
-        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmed = cleaned(name)
         guard !trimmed.isEmpty else { return }
         let color = profiles.count % PlayerProfile.avatarPaletteCount
         let profile = PlayerProfile(name: trimmed, avatarColorIndex: color)
@@ -35,7 +41,7 @@ final class ProfileStore {
     }
 
     func renameProfile(id: UUID, to name: String) {
-        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmed = cleaned(name)
         guard !trimmed.isEmpty,
               let index = profiles.firstIndex(where: { $0.id == id && !$0.isComputer }) else { return }
         profiles[index].name = trimmed
@@ -78,6 +84,10 @@ final class ProfileStore {
         save()
     }
 
+    private func cleaned(_ name: String) -> String {
+        String(name.trimmingCharacters(in: .whitespacesAndNewlines).prefix(Self.maxNameLength))
+    }
+
     private func load() {
         guard FileManager.default.fileExists(atPath: fileURL.path) else {
             profiles = []
@@ -88,6 +98,9 @@ final class ProfileStore {
             profiles = try decoder.decode([PlayerProfile].self, from: data)
                 .filter { !$0.isComputer }
         } catch {
+            // Geen dialoog voor een kind, maar wel een spoor voor de
+            // ontwikkelaar.
+            logger.error("Profielen laden mislukt: \(error.localizedDescription, privacy: .public)")
             profiles = []
         }
     }
@@ -97,7 +110,7 @@ final class ProfileStore {
             let data = try encoder.encode(profiles.filter { !$0.isComputer })
             try data.write(to: fileURL, options: [.atomic])
         } catch {
-            // Local-only kids app; ignore disk errors silently.
+            logger.error("Profielen bewaren mislukt: \(error.localizedDescription, privacy: .public)")
         }
     }
 }

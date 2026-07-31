@@ -24,4 +24,12 @@ final class ThemeStore {
         themeID = id
         UserDefaults.standard.set(id.rawValue, forKey: Self.key)
     }
+
+    /// Terug naar Klassiek wanneer de Gezinsversie er niet (meer) is — een
+    /// premiumthema mag een terugbetaling niet overleven.
+    func enforceFreeTheme() {
+        if themeID != .klassiek {
+            select(.klassiek)
+        }
+    }
 }

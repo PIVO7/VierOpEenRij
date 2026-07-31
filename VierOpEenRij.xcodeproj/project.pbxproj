@@ -30,6 +30,7 @@
 		68551D0FC5CBA6BA3FEF6E93 /* GameSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F6A9F1E683BAE4D01108BF /* GameSetupView.swift */; };
 		6F85E1A84064DA89E3282766 /* DiscView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C722D4D2C229951E8E7B55A /* DiscView.swift */; };
 		76126D69D47E308FF5B5EB47 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6228A2053E80F61D9777894 /* AppTheme.swift */; };
+		80622FD0FCC247FF805C001C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A1826AF3C199DCC795B4EFFF /* PrivacyInfo.xcprivacy */; };
 		81671DAEAAADB7080567A2DF /* ActiveGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8290BC70EA831D42580FD996 /* ActiveGame.swift */; };
 		81E728947954658E2A05EA72 /* ComputerAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C6604E72A70C7FCE923182 /* ComputerAI.swift */; };
 		8915C496969FCF1744B47419 /* ProfileStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3EB20744265B6D1057BD9B /* ProfileStatsView.swift */; };
@@ -117,6 +118,7 @@
 		9F3EED2BF893F09DC49F4D23 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9F48DF70C97E99BC7D8E3812 /* GameStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStoreTests.swift; sourceTree = "<group>"; };
 		A1163825A34219668937F93F /* GameSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSnapshot.swift; sourceTree = "<group>"; };
+		A1826AF3C199DCC795B4EFFF /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		A538FACA31D5609870BEC24C /* ProfileRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRowView.swift; sourceTree = "<group>"; };
 		A5713F55D6E4D2FA9A957AB3 /* fanfare.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fanfare.wav; sourceTree = "<group>"; };
 		A6BBAAFC026E037EAB757497 /* VierOpEenRij Tests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = "VierOpEenRij Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -317,6 +319,7 @@
 			children = (
 				5C8A8AAD3F480FBBD539BB73 /* Assets.xcassets */,
 				AAB02DAAC087E137F907705A /* Localizable.xcstrings */,
+				A1826AF3C199DCC795B4EFFF /* PrivacyInfo.xcprivacy */,
 				016F55020E04729A5DF069B5 /* VierOpEenRijApp.swift */,
 				B4E614B4CF22A38BC41105DB /* AI */,
 				930535E2B8913928EF7CB263 /* Components */,
@@ -446,6 +449,7 @@
 			files = (
 				66410B575315C942DB2B674D /* Assets.xcassets in Resources */,
 				9EB7E0C2AB96FFE8C0C33782 /* Localizable.xcstrings in Resources */,
+				80622FD0FCC247FF805C001C /* PrivacyInfo.xcprivacy in Resources */,
 				9389A8E7F29FB997F2FE7F56 /* ding.wav in Resources */,
 				DBC99F3302E467928876E3DB /* fanfare.wav in Resources */,
 				D36E3E4F49B565E753DF9D7B /* plop.wav in Resources */,

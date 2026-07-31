@@ -104,6 +104,16 @@
     "%lld stenen" : {
 
     },
+    "%lld stenen, bovenste van %@" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld stenen, bovenste van %2$@"
+          }
+        }
+      }
+    },
     "%lld× gewonnen · %lld gespeeld" : {
       "localizations" : {
         "nl" : {
@@ -311,6 +321,9 @@
 
     },
     "Laat je stenen vallen en win samen" : {
+
+    },
+    "leeg" : {
 
     },
     "Lieveheersbeestje" : {

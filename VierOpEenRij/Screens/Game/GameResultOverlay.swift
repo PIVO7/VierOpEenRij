@@ -69,7 +69,7 @@ struct GameResultOverlay: View {
                 Button(action: onRematch) {
                     Text("Nog een keer!")
                         .font(AppTheme.rounded(m.buttonTextSize * 0.85))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(AppTheme.ink)
                         .frame(maxWidth: .infinity)
                         .frame(height: m.buttonHeight * 0.9)
                 }

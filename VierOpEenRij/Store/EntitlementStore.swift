@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import OSLog
 import StoreKit
 
 /// Weet of het gezin de volledige versie heeft. Eén niet-verbruikbare,
@@ -11,10 +12,20 @@ final class EntitlementStore {
     static let familyProductID = "com.pivo7.vieropeenrij.gezin"
     private static let cacheKey = "gezin-ontgrendeld"
 
+    /// Hoe een aankooppoging afliep, zodat de paywall het verschil kent
+    /// tussen "laat maar" en "er ging iets mis".
+    enum PurchaseOutcome {
+        case success
+        case cancelled
+        case pending
+        case failed
+    }
+
     private(set) var isFamilyUnlocked: Bool
     private(set) var familyProduct: Product?
 
     private var updatesTask: Task<Void, Never>?
+    private let logger = Logger(subsystem: "com.pivo7.vieropeenrij", category: "aankoop")
 
     init() {
         isFamilyUnlocked = UserDefaults.standard.bool(forKey: Self.cacheKey)
@@ -32,7 +43,11 @@ final class EntitlementStore {
     }
 
     func load() async {
-        familyProduct = try? await Product.products(for: [Self.familyProductID]).first
+        do {
+            familyProduct = try await Product.products(for: [Self.familyProductID]).first
+        } catch {
+            logger.error("Product laden mislukt: \(error.localizedDescription, privacy: .public)")
+        }
         await refreshEntitlements()
     }
 
@@ -49,25 +64,39 @@ final class EntitlementStore {
         UserDefaults.standard.set(unlocked, forKey: Self.cacheKey)
     }
 
-    /// Meldt of de aankoop gelukt is.
-    func purchaseFamily() async -> Bool {
+    func purchaseFamily() async -> PurchaseOutcome {
         if familyProduct == nil {
             await load()
         }
-        guard let product = familyProduct,
-              let result = try? await product.purchase() else { return false }
+        guard let product = familyProduct else { return .failed }
 
-        if case .success(let verification) = result,
-           case .verified(let transaction) = verification {
-            await transaction.finish()
-            await refreshEntitlements()
-            return true
+        do {
+            switch try await product.purchase() {
+            case .success(let verification):
+                guard case .verified(let transaction) = verification else { return .failed }
+                await transaction.finish()
+                await refreshEntitlements()
+                return .success
+            case .userCancelled:
+                return .cancelled
+            case .pending:
+                // Vraag-om-te-kopen: een ouder moet nog goedkeuren.
+                return .pending
+            @unknown default:
+                return .failed
+            }
+        } catch {
+            logger.error("Aankoop mislukt: \(error.localizedDescription, privacy: .public)")
+            return .failed
         }
-        return false
     }
 
     func restorePurchases() async {
-        try? await AppStore.sync()
+        do {
+            try await AppStore.sync()
+        } catch {
+            logger.error("Herstellen mislukt: \(error.localizedDescription, privacy: .public)")
+        }
         await refreshEntitlements()
     }
 }

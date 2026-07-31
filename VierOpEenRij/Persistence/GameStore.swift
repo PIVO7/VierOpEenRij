@@ -1,5 +1,10 @@
 import Foundation
 import Observation
+import OSLog
+
+/// Buiten de actor, zodat de losgekoppelde schrijftaken hem ook mogen
+/// gebruiken; `Logger` is Sendable.
+private let opslagLogger = Logger(subsystem: "com.pivo7.vieropeenrij", category: "spelstand")
 
 @MainActor
 @Observable
@@ -34,8 +39,13 @@ final class GameStore {
         let previous = pendingWrite
         pendingWrite = Task.detached(priority: .utility) {
             await previous?.value
-            // Lokale kids-app; stil falen zoals ProfileStore.
-            try? JSONEncoder().encode(snapshot).write(to: url, options: [.atomic])
+            do {
+                try JSONEncoder().encode(snapshot).write(to: url, options: [.atomic])
+            } catch {
+                // Geen dialoog voor een kind, wel een spoor voor de
+                // ontwikkelaar.
+                opslagLogger.error("Spelstand bewaren mislukt: \(error.localizedDescription, privacy: .public)")
+            }
         }
     }
 
@@ -70,6 +80,7 @@ final class GameStore {
             }
             savedGame = snapshot
         } catch {
+            opslagLogger.error("Spelstand laden mislukt: \(error.localizedDescription, privacy: .public)")
             savedGame = nil
         }
     }

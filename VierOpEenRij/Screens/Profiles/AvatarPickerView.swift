@@ -96,7 +96,7 @@ struct AvatarPickerView: View {
                 } label: {
                     Text("Klaar!")
                         .font(AppTheme.rounded(m.buttonTextSize * 0.8))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(AppTheme.ink)
                         .frame(maxWidth: .infinity)
                         .frame(height: m.buttonHeight * 0.85)
                 }
@@ -128,7 +128,7 @@ struct AvatarPickerView: View {
                         .font(AppTheme.rounded(m.captionSize * 0.9))
                 }
             }
-            .foregroundStyle(picked ? .white : AppTheme.ink)
+            .foregroundStyle(AppTheme.ink)
             .frame(maxWidth: .infinity)
             .frame(height: m.tapTarget)
         }

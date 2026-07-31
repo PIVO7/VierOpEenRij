@@ -29,7 +29,7 @@ struct ProfilesView: View {
 
                             Button("Voeg toe", action: addProfile)
                                 .font(AppTheme.rounded(m.captionSize, .bold))
-                                .foregroundStyle(canAdd ? .white : AppTheme.offInk)
+                                .foregroundStyle(canAdd ? AppTheme.ink : AppTheme.offInk)
                                 .padding(.horizontal, 14)
                                 .frame(minHeight: m.tapTarget)
                                 .toyBlock(

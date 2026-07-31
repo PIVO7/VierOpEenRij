@@ -1,7 +1,543 @@
 {
   "sourceLanguage" : "nl",
   "strings" : {
+    ", aan de beurt" : {
 
+    },
+    "%@ denkt na…" : {
+
+    },
+    "%@ hernoemen" : {
+
+    },
+    "%@ is aan de beurt" : {
+
+    },
+    "%@ mag beginnen" : {
+
+    },
+    "%@ verwijderen" : {
+
+    },
+    "%@ verwijderen?" : {
+
+    },
+    "%@ vs Computer" : {
+
+    },
+    "%@ wint na %lld stenen!" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ wint na %2$lld stenen!"
+          }
+        }
+      }
+    },
+    "%@, %@, Gezinsversie nodig" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$@, Gezinsversie nodig"
+          }
+        }
+      }
+    },
+    "%@, %lld stenen" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$lld stenen"
+          }
+        }
+      }
+    },
+    "%@, %lld stenen, winnaar" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$lld stenen, winnaar"
+          }
+        }
+      }
+    },
+    "%@: %@" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@: %2$@"
+          }
+        }
+      }
+    },
+    "%lld" : {
+
+    },
+    "%lld op rij · beste %lld" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld op rij · beste %2$lld"
+          }
+        }
+      }
+    },
+    "%lld overwinningen" : {
+
+    },
+    "%lld spelers · %lld overwinningen" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld spelers · %2$lld overwinningen"
+          }
+        }
+      }
+    },
+    "%lld stenen" : {
+
+    },
+    "%lld× gewonnen · %lld gespeeld" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld× gewonnen · %2$lld gespeeld"
+          }
+        }
+      }
+    },
+    "2 spelers, één toestel" : {
+
+    },
+    "ABC" : {
+
+    },
+    "Alle drie de tegenstanders: Dommel, Robbie en Professor Punt" : {
+
+    },
+    "Alle kleurenthema's: Snoep, Oceaan en Nacht" : {
+
+    },
+    "Alles ontgrendelen" : {
+
+    },
+    "Annuleer" : {
+
+    },
+    "Avatar van %@ aanpassen" : {
+
+    },
+    "beste %lld" : {
+
+    },
+    "Bewaar" : {
+
+    },
+    "Blad" : {
+
+    },
+    "Blauw" : {
+
+    },
+    "Bliksem" : {
+
+    },
+    "Dat mag liggend, staand of schuin." : {
+
+    },
+    "De middelste kolom is goud waard: daar passen de meeste rijtjes doorheen." : {
+
+    },
+    "De overwinningen van dit profiel gaan verloren." : {
+
+    },
+    "Dommel" : {
+
+    },
+    "Doorspelen" : {
+
+    },
+    "Eén keer kopen, voor het hele gezin — ook via Delen met gezin." : {
+
+    },
+    "Eerder gekocht? Zet terug" : {
+
+    },
+    "Er staat nog een spel klaar om verder te spelen." : {
+
+    },
+    "Gast" : {
+
+    },
+    "Gast 1" : {
+
+    },
+    "Gast 2" : {
+
+    },
+    "Geel" : {
+
+    },
+    "Geen profielen" : {
+
+    },
+    "Gelijkspel" : {
+
+    },
+    "Gelijkspel — het bord is vol!" : {
+
+    },
+    "Gelijkspel!" : {
+
+    },
+    "GELUID" : {
+
+    },
+    "Geluidseffecten" : {
+
+    },
+    "Gespeeld" : {
+
+    },
+    "Gewonnen" : {
+
+    },
+    "Gewonnen!" : {
+
+    },
+    "Gezinsversie" : {
+
+    },
+    "GEZINSVERSIE" : {
+
+    },
+    "gooit maar wat" : {
+
+    },
+    "Haas" : {
+
+    },
+    "Hart" : {
+
+    },
+    "Het bord heeft 7 kolommen en 6 rijen. Een volle kolom kan niet meer." : {
+
+    },
+    "Hoe werkt het?" : {
+
+    },
+    "Hoe werkt Vier op een rij?" : {
+
+    },
+    "Hoeveel is %lld × %lld?" : {
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Hoeveel is %1$lld × %2$lld?"
+          }
+        }
+      }
+    },
+    "Hond" : {
+
+    },
+    "in %lld stenen" : {
+
+    },
+    "Initialen" : {
+
+    },
+    "Instellingen" : {
+
+    },
+    "Is het bord vol zonder rij van vier? Dan is het gelijkspel." : {
+
+    },
+    "Je voortgang wordt bewaard." : {
+
+    },
+    "Jij bent aan de beurt" : {
+
+    },
+    "Kat" : {
+
+    },
+    "KIES 2 SPELERS" : {
+
+    },
+    "KIES JE TEGENSTANDER" : {
+
+    },
+    "KIES JOUW PROFIEL" : {
+
+    },
+    "Kijk ook naar de stenen van de ander — drie op een rij moet je meteen blokkeren!" : {
+
+    },
+    "Klaar!" : {
+
+    },
+    "Klassiek" : {
+
+    },
+    "KLEUR" : {
+
+    },
+    "Kleur %@" : {
+
+    },
+    "Kolom %lld" : {
+
+    },
+    "Koraal" : {
+
+    },
+    "Krijg als eerste vier stenen van jouw kleur op een rij." : {
+
+    },
+    "Kroon" : {
+
+    },
+    "Laat hier je steen vallen" : {
+
+    },
+    "Laat je stenen vallen en win samen" : {
+
+    },
+    "Lieveheersbeestje" : {
+
+    },
+    "Lopend spel vervangen?" : {
+
+    },
+    "Maak eerst een profiel aan om te spelen." : {
+
+    },
+    "Maak eerst een speler aan" : {
+
+    },
+    "Maan" : {
+
+    },
+    "Mint" : {
+
+    },
+    "Naam" : {
+
+    },
+    "Naam van je kind" : {
+
+    },
+    "Naam wijzigen" : {
+
+    },
+    "Naar profielen" : {
+
+    },
+    "Nacht" : {
+
+    },
+    "NIEUW PROFIEL" : {
+
+    },
+    "Nieuw record!" : {
+
+    },
+    "Nieuw spel starten" : {
+
+    },
+    "Nog een keer!" : {
+
+    },
+    "Nog geen potjes gespeeld. Laat maar vallen!" : {
+
+    },
+    "Nog geen profielen. Maak er een aan om te spelen." : {
+
+    },
+    "Oceaan" : {
+
+    },
+    "Of speel als gast" : {
+
+    },
+    "Of speel met twee gasten" : {
+
+    },
+    "Om de beurt: eerst de ene kleur, dan de andere." : {
+
+    },
+    "Ontgrendel voor %@" : {
+
+    },
+    "Ontgrendeld — veel plezier!" : {
+
+    },
+    "Oranje" : {
+
+    },
+    "Paars" : {
+
+    },
+    "Per ongeluk getikt? Met Zet terug mag je vorige steen er weer uit." : {
+
+    },
+    "Pootafdruk" : {
+
+    },
+    "Professor Punt" : {
+
+    },
+    "Profielen" : {
+
+    },
+    "rekent alles uit" : {
+
+    },
+    "Robbie" : {
+
+    },
+    "Schildpad" : {
+
+    },
+    "SLIMME TRUCJES" : {
+
+    },
+    "Sluit" : {
+
+    },
+    "Sluiten" : {
+
+    },
+    "Snelste winst" : {
+
+    },
+    "Snoep" : {
+
+    },
+    "Solo tegen een slimme tegenstander" : {
+
+    },
+    "Solo uitdaging" : {
+
+    },
+    "speelt lekker mee" : {
+
+    },
+    "Spel verlaten" : {
+
+    },
+    "Spel verlaten?" : {
+
+    },
+    "SPELERS" : {
+
+    },
+    "Start spel" : {
+
+    },
+    "Statistieken per speler, met winreeks en snelste winst" : {
+
+    },
+    "Steen %lld" : {
+
+    },
+    "Ster" : {
+
+    },
+    "SYMBOOL" : {
+
+    },
+    "Tegen de computer" : {
+
+    },
+    "Tegen elkaar" : {
+
+    },
+    "Terug naar menu" : {
+
+    },
+    "THEMA" : {
+
+    },
+    "Thema %@" : {
+
+    },
+    "Thema %@, Gezinsversie nodig" : {
+
+    },
+    "Tik om ze te laten wisselen" : {
+
+    },
+    "Tik op een kolom en je steen valt naar het laagste vrije vakje." : {
+
+    },
+    "Toont de statistieken" : {
+
+    },
+    "Twee speelstenen" : {
+
+    },
+    "Twee spelers, één toestel" : {
+
+    },
+    "UITLEG" : {
+
+    },
+    "Verder spelen" : {
+
+    },
+    "Verlaten" : {
+
+    },
+    "Verwijderen" : {
+
+    },
+    "Vier op een rij!" : {
+
+    },
+    "Vis" : {
+
+    },
+    "Vlam" : {
+
+    },
+    "Voeg toe" : {
+
+    },
+    "Vogel" : {
+
+    },
+    "Vraag even aan papa of mama" : {
+
+    },
+    "Winreeks" : {
+
+    },
+    "Zet terug" : {
+
+    },
+    "Zet teruggezet. %@ is weer aan de beurt." : {
+
+    },
+    "ZO SPEEL JE" : {
+
+    },
+    "ZO WIN JE" : {
+
+    },
+    "Zon" : {
+
+    }
   },
   "version" : "1.0"
 }

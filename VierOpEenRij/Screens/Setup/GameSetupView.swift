@@ -83,28 +83,45 @@ struct GameSetupView: View {
                             depth: m.depth,
                             border: m.border
                         ))
-
-                        // Meteen kunnen spelen zonder eerst een profiel aan
-                        // te maken; gasten worden niet bewaard.
-                        Button(action: requestGuestStart) {
-                            // Expliciet LocalizedStringKey: een ternary van twee
-                            // letterlijke strings wordt anders een gewone String
-                            // en die vertaalt Text niet.
-                            Text(mode == .versusComputer
-                                 ? LocalizedStringKey("Of speel als gast")
-                                 : LocalizedStringKey("Of speel met twee gasten"))
-                                .font(AppTheme.rounded(m.buttonTextSize * 0.75))
-                                .foregroundStyle(AppTheme.ink)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: m.buttonHeight * 0.82)
-                        }
-                        .buttonStyle(ToyButtonStyle(
-                            fill: .white,
-                            radius: m.cardCorner * 0.8,
-                            depth: m.depth,
-                            border: m.border
-                        ))
                     }
+
+                    // Ook zonder profiel hoort de tegenstanderkeuze in beeld:
+                    // een gast speelde anders altijd tegen Robbie zonder dat
+                    // ergens te zien was.
+                    if mode == .versusComputer {
+                        Text("KIES JE TEGENSTANDER")
+                            .font(AppTheme.rounded(m.captionSize * 0.9))
+                            .kerning(1.4)
+                            .foregroundStyle(AppTheme.faint)
+
+                        HStack(spacing: m.gutter * 0.75) {
+                            ForEach(ComputerLevel.allCases) { level in
+                                opponentButton(level)
+                            }
+                        }
+                    }
+
+                    // Meteen kunnen spelen zonder eerst een profiel aan
+                    // te maken; gasten worden niet bewaard.
+                    Button(action: requestGuestStart) {
+                        // Expliciet LocalizedStringKey: een ternary van twee
+                        // letterlijke strings wordt anders een gewone String
+                        // en die vertaalt Text niet.
+                        Text(mode == .versusComputer
+                             ? LocalizedStringKey("Of speel als gast")
+                             : LocalizedStringKey("Of speel met twee gasten"))
+                            .font(AppTheme.rounded(m.buttonTextSize * 0.75))
+                            .foregroundStyle(AppTheme.ink)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: m.buttonHeight * 0.82)
+                    }
+                    .buttonStyle(ToyButtonStyle(
+                        fill: .white,
+                        radius: m.cardCorner * 0.8,
+                        depth: m.depth,
+                        border: m.border
+                    ))
+                    .padding(.bottom, 6)
                 } else {
                     Text(mode == .versusComputer
                          ? LocalizedStringKey("KIES JOUW PROFIEL")

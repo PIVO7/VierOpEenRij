@@ -49,7 +49,6 @@ struct GameView: View {
                     isEnabled: engine.canDrop,
                     onDrop: drop
                 )
-                .frame(maxWidth: m.contentMaxWidth)
 
                 undoRow
 
@@ -57,6 +56,9 @@ struct GameView: View {
             }
             .padding(.horizontal, m.gutter)
             .padding(.vertical, m.gutter * 0.5)
+            // De hele kolom op de bordbreedte, niet alleen het bord: anders
+            // rekt de kop op een iPad uit over het volle scherm.
+            .frame(maxWidth: m.contentMaxWidth)
             .frame(maxWidth: .infinity)
 
             if showTurnBanner {
@@ -142,7 +144,9 @@ struct GameView: View {
             .lineLimit(1)
             .minimumScaleFactor(0.7)
             .frame(maxWidth: .infinity)
-            .opacity(showResult ? 0 : 1)
+            // Ook weg zolang de beurtbanner hangt: op lage schermen valt de
+            // banner precies over deze regel heen.
+            .opacity(showResult || showTurnBanner ? 0 : 1)
     }
 
     private var undoRow: some View {

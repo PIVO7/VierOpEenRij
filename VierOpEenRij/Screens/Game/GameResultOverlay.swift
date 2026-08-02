@@ -16,18 +16,43 @@ struct GameResultOverlay: View {
 
     private var hasWinner: Bool { winnerProfileIDs.count == 1 }
 
+    private var winner: GamePlayer? {
+        guard hasWinner else { return nil }
+        return players.first { winnerProfileIDs.contains($0.profileID) }
+    }
+
+    /// De grote kop noemt de winnaar bij naam; een kaal "Gewonnen!" las
+    /// alsof jíj won, ook wanneer de computer er met de rij vandoor ging.
+    private var title: String {
+        winner.map { String(localized: "\($0.name) wint!") } ?? String(localized: "Gelijkspel!")
+    }
+
+    /// Onder de kop: hoe snel het ging — of een hart onder de riem als de
+    /// computer won.
+    private var subtitle: String {
+        guard let winner, let index = players.firstIndex(where: { $0.id == winner.id }) else {
+            return message
+        }
+        if winner.isComputer {
+            return String(localized: "Volgende keer win jij vast!")
+        }
+        let count = discCounts.indices.contains(index) ? discCounts[index] : 0
+        return String(localized: "Gewonnen na \(count) stenen!")
+    }
+
     var body: some View {
         ZStack {
             AppTheme.ink.opacity(0.5).ignoresSafeArea()
 
-            if hasWinner {
+            // Alleen feest wanneer een échte speler wint; confetti voor de
+            // computer maakte het eindscherm juist verwarrender.
+            if let winner, !winner.isComputer {
                 ConfettiView(particleCount: isNewRecord ? 44 : 28)
                     .ignoresSafeArea()
             }
 
             VStack(spacing: m.gutter) {
-                if hasWinner,
-                   let winner = players.first(where: { winnerProfileIDs.contains($0.profileID) }) {
+                if let winner {
                     AvatarBadge(player: winner, size: m.avatarSize * 1.5)
                         .overlay(alignment: .top) {
                             Image(systemName: "crown.fill")
@@ -40,9 +65,11 @@ struct GameResultOverlay: View {
                         .accessibilityHidden(true)
                 }
 
-                Text(hasWinner ? LocalizedStringKey("Gewonnen!") : LocalizedStringKey("Gelijkspel!"))
+                Text(title)
                     .font(AppTheme.rounded(m.titleSize))
                     .foregroundStyle(AppTheme.ink)
+                    .minimumScaleFactor(0.6)
+                    .lineLimit(1)
 
                 if isNewRecord {
                     Label("Nieuw record!", systemImage: "sparkles")
@@ -53,7 +80,7 @@ struct GameResultOverlay: View {
                         .toyBlock(fill: AppTheme.amber, radius: m.cellCorner + 2, depth: 3, border: m.thinBorder)
                 }
 
-                Text(message)
+                Text(subtitle)
                     .font(AppTheme.rounded(m.bodySize, .bold))
                     .foregroundStyle(AppTheme.soft)
                     .multilineTextAlignment(.center)

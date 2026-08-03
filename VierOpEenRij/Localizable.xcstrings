@@ -35,6 +35,9 @@
         }
       }
     },
+    "%@ wint!" : {
+
+    },
     "%@, %@, Gezinsversie nodig" : {
       "localizations" : {
         "nl" : {
@@ -160,7 +163,13 @@
     "Bliksem" : {
 
     },
+    "Dat lukte niet" : {
+
+    },
     "Dat mag liggend, staand of schuin." : {
+
+    },
+    "De aankoop wacht nog op goedkeuring van een ouder." : {
 
     },
     "De middelste kolom is goud waard: daar passen de meeste rijtjes doorheen." : {
@@ -220,7 +229,7 @@
     "Gewonnen" : {
 
     },
-    "Gewonnen!" : {
+    "Gewonnen na %lld stenen!" : {
 
     },
     "Gezinsversie" : {
@@ -308,6 +317,9 @@
     "Kolom %lld" : {
 
     },
+    "Kopen is niet gelukt. Controleer de internetverbinding en probeer het straks nog eens." : {
+
+    },
     "Koraal" : {
 
     },
@@ -384,6 +396,9 @@
 
     },
     "Of speel met twee gasten" : {
+
+    },
+    "Oké" : {
 
     },
     "Om de beurt: eerst de ene kleur, dan de andere." : {
@@ -528,6 +543,9 @@
 
     },
     "Vogel" : {
+
+    },
+    "Volgende keer win jij vast!" : {
 
     },
     "Vraag even aan papa of mama" : {

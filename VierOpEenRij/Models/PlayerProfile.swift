@@ -18,6 +18,8 @@ struct PlayerProfile: Identifiable, Equatable, Codable, Hashable {
     var bestStreak: Int
     /// Snelste overwinning, in eigen stenen; 0 betekent nog geen winst.
     var fastestWin: Int
+    /// De laatste potjes, voor het grafiekje op de statistiekenpagina.
+    var history: [GameRecord]
 
     init(
         id: UUID = UUID(),
@@ -31,7 +33,8 @@ struct PlayerProfile: Identifiable, Equatable, Codable, Hashable {
         draws: Int = 0,
         currentStreak: Int = 0,
         bestStreak: Int = 0,
-        fastestWin: Int = 0
+        fastestWin: Int = 0,
+        history: [GameRecord] = []
     ) {
         self.id = id
         self.name = name.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -45,6 +48,7 @@ struct PlayerProfile: Identifiable, Equatable, Codable, Hashable {
         self.currentStreak = currentStreak
         self.bestStreak = bestStreak
         self.fastestWin = fastestWin
+        self.history = history
     }
 
     /// Met de hand, zodat oudere profielbestanden zonder de statistiekvelden
@@ -63,6 +67,7 @@ struct PlayerProfile: Identifiable, Equatable, Codable, Hashable {
         currentStreak = try container.decodeIfPresent(Int.self, forKey: .currentStreak) ?? 0
         bestStreak = try container.decodeIfPresent(Int.self, forKey: .bestStreak) ?? 0
         fastestWin = try container.decodeIfPresent(Int.self, forKey: .fastestWin) ?? 0
+        history = try container.decodeIfPresent([GameRecord].self, forKey: .history) ?? []
     }
 
     /// Aantal kleuren in het avatarpalet; `AvatarBadge.palette` moet even

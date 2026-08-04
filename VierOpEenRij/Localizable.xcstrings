@@ -1,574 +1,1065 @@
 {
-  "sourceLanguage" : "nl",
-  "strings" : {
-    ", aan de beurt" : {
-
-    },
-    "%@ denkt na…" : {
-
-    },
-    "%@ hernoemen" : {
-
-    },
-    "%@ is aan de beurt" : {
-
-    },
-    "%@ mag beginnen" : {
-
-    },
-    "%@ verwijderen" : {
-
-    },
-    "%@ verwijderen?" : {
-
-    },
-    "%@ vs Computer" : {
-
-    },
-    "%@ wint na %lld stenen!" : {
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ wint na %2$lld stenen!"
+  "sourceLanguage": "nl",
+  "strings": {
+    "%@ denkt na…": {},
+    "%@ hernoemen": {},
+    "%@ is aan de beurt": {},
+    "%@ mag beginnen": {},
+    "%@ verwijderen": {},
+    "%@ verwijderen?": {},
+    "%@ vs Computer": {},
+    "%@ wint na %lld stenen!": {
+      "localizations": {
+        "nl": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ wint na %2$lld stenen!"
           }
         }
       }
     },
-    "%@ wint!" : {
-
-    },
-    "%@, %@, Gezinsversie nodig" : {
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@, %2$@, Gezinsversie nodig"
+    "%@ wint!": {},
+    "%@, %@, Gezinsversie nodig": {
+      "localizations": {
+        "nl": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@, %2$@, Gezinsversie nodig"
           }
         }
       }
     },
-    "%@, %lld stenen" : {
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@, %2$lld stenen"
+    "%@, %lld stenen": {
+      "localizations": {
+        "nl": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@, %2$lld stenen"
           }
         }
       }
     },
-    "%@, %lld stenen, winnaar" : {
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@, %2$lld stenen, winnaar"
+    "%@, %lld stenen, winnaar": {
+      "localizations": {
+        "nl": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@, %2$lld stenen, winnaar"
           }
         }
       }
     },
-    "%@: %@" : {
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@: %2$@"
+    "%@: %@": {
+      "localizations": {
+        "nl": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@: %2$@"
           }
         }
       }
     },
-    "%lld" : {
-
+    "%@: %@, %@": {
+      "shouldTranslate": false
     },
-    "%lld op rij · beste %lld" : {
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld op rij · beste %2$lld"
+    "%lld": {},
+    "%lld keer gewonnen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Won %lld times"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld victoires"
           }
         }
       }
     },
-    "%lld overwinningen" : {
-
-    },
-    "%lld spelers · %lld overwinningen" : {
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld spelers · %2$lld overwinningen"
+    "%lld op rij": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld in a row"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld d'affilée"
           }
         }
       }
     },
-    "%lld stenen" : {
-
-    },
-    "%lld stenen, bovenste van %@" : {
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld stenen, bovenste van %2$@"
+    "%lld op rij · beste %lld": {
+      "localizations": {
+        "nl": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld op rij · beste %2$lld"
           }
         }
       }
     },
-    "%lld× gewonnen · %lld gespeeld" : {
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld× gewonnen · %2$lld gespeeld"
+    "%lld overwinningen": {},
+    "%lld potjes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld games"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld parties"
           }
         }
       }
     },
-    "2 spelers, één toestel" : {
-
-    },
-    "ABC" : {
-
-    },
-    "Alle drie de tegenstanders: Dommel, Robbie en Professor Punt" : {
-
-    },
-    "Alle kleurenthema's: Snoep, Oceaan en Nacht" : {
-
-    },
-    "Alles ontgrendelen" : {
-
-    },
-    "Annuleer" : {
-
-    },
-    "Avatar van %@ aanpassen" : {
-
-    },
-    "beste %lld" : {
-
-    },
-    "Bewaar" : {
-
-    },
-    "Blad" : {
-
-    },
-    "Blauw" : {
-
-    },
-    "Bliksem" : {
-
-    },
-    "Dat lukte niet" : {
-
-    },
-    "Dat mag liggend, staand of schuin." : {
-
-    },
-    "De aankoop wacht nog op goedkeuring van een ouder." : {
-
-    },
-    "De middelste kolom is goud waard: daar passen de meeste rijtjes doorheen." : {
-
-    },
-    "De overwinningen van dit profiel gaan verloren." : {
-
-    },
-    "Dommel" : {
-
-    },
-    "Doorspelen" : {
-
-    },
-    "Eén keer kopen, voor het hele gezin — ook via Delen met gezin." : {
-
-    },
-    "Eerder gekocht? Zet terug" : {
-
-    },
-    "Er staat nog een spel klaar om verder te spelen." : {
-
-    },
-    "Gast" : {
-
-    },
-    "Gast 1" : {
-
-    },
-    "Gast 2" : {
-
-    },
-    "Geel" : {
-
-    },
-    "Geen profielen" : {
-
-    },
-    "Gelijkspel" : {
-
-    },
-    "Gelijkspel — het bord is vol!" : {
-
-    },
-    "Gelijkspel!" : {
-
-    },
-    "GELUID" : {
-
-    },
-    "Geluidseffecten" : {
-
-    },
-    "Gespeeld" : {
-
-    },
-    "Gewonnen" : {
-
-    },
-    "Gewonnen na %lld stenen!" : {
-
-    },
-    "Gezinsversie" : {
-
-    },
-    "GEZINSVERSIE" : {
-
-    },
-    "gooit maar wat" : {
-
-    },
-    "Haas" : {
-
-    },
-    "Hart" : {
-
-    },
-    "Het bord heeft 7 kolommen en 6 rijen. Een volle kolom kan niet meer." : {
-
-    },
-    "Hoe werkt het?" : {
-
-    },
-    "Hoe werkt Vier op een rij?" : {
-
-    },
-    "Hoeveel is %lld × %lld?" : {
-      "localizations" : {
-        "nl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Hoeveel is %1$lld × %2$lld?"
+    "%lld spelers · %lld overwinningen": {
+      "localizations": {
+        "nl": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld spelers · %2$lld overwinningen"
           }
         }
       }
     },
-    "Hond" : {
-
-    },
-    "in %lld stenen" : {
-
-    },
-    "Initialen" : {
-
-    },
-    "Instellingen" : {
-
-    },
-    "Is het bord vol zonder rij van vier? Dan is het gelijkspel." : {
-
-    },
-    "Je voortgang wordt bewaard." : {
-
-    },
-    "Jij bent aan de beurt" : {
-
-    },
-    "Kat" : {
-
-    },
-    "KIES 2 SPELERS" : {
-
-    },
-    "KIES JE TEGENSTANDER" : {
-
-    },
-    "KIES JOUW PROFIEL" : {
-
-    },
-    "Kijk ook naar de stenen van de ander — drie op een rij moet je meteen blokkeren!" : {
-
-    },
-    "Klaar!" : {
-
-    },
-    "Klassiek" : {
-
-    },
-    "KLEUR" : {
-
-    },
-    "Kleur %@" : {
-
-    },
-    "Kolom %lld" : {
-
-    },
-    "Kopen is niet gelukt. Controleer de internetverbinding en probeer het straks nog eens." : {
-
-    },
-    "Koraal" : {
-
-    },
-    "Krijg als eerste vier stenen van jouw kleur op een rij." : {
-
-    },
-    "Kroon" : {
-
-    },
-    "Laat hier je steen vallen" : {
-
-    },
-    "Laat je stenen vallen en win samen" : {
-
-    },
-    "leeg" : {
-
-    },
-    "Lieveheersbeestje" : {
-
-    },
-    "Lopend spel vervangen?" : {
-
-    },
-    "Maak eerst een profiel aan om te spelen." : {
-
-    },
-    "Maak eerst een speler aan" : {
-
-    },
-    "Maan" : {
-
-    },
-    "Mint" : {
-
-    },
-    "Naam" : {
-
-    },
-    "Naam van je kind" : {
-
-    },
-    "Naam wijzigen" : {
-
-    },
-    "Naar profielen" : {
-
-    },
-    "Nacht" : {
-
-    },
-    "NIEUW PROFIEL" : {
-
-    },
-    "Nieuw record!" : {
-
-    },
-    "Nieuw spel starten" : {
-
-    },
-    "Nog een keer!" : {
-
-    },
-    "Nog geen potjes gespeeld. Laat maar vallen!" : {
-
-    },
-    "Nog geen profielen. Maak er een aan om te spelen." : {
-
-    },
-    "Oceaan" : {
-
-    },
-    "Of speel als gast" : {
-
-    },
-    "Of speel met twee gasten" : {
-
-    },
-    "Oké" : {
-
-    },
-    "Om de beurt: eerst de ene kleur, dan de andere." : {
-
-    },
-    "Ontgrendel voor %@" : {
-
-    },
-    "Ontgrendeld — veel plezier!" : {
-
-    },
-    "Oranje" : {
-
-    },
-    "Paars" : {
-
-    },
-    "Per ongeluk getikt? Met Zet terug mag je vorige steen er weer uit." : {
-
-    },
-    "Pootafdruk" : {
-
-    },
-    "Professor Punt" : {
-
-    },
-    "Profielen" : {
-
-    },
-    "rekent alles uit" : {
-
-    },
-    "Robbie" : {
-
-    },
-    "Schildpad" : {
-
-    },
-    "SLIMME TRUCJES" : {
-
-    },
-    "Sluit" : {
-
-    },
-    "Sluiten" : {
-
-    },
-    "Snelste winst" : {
-
-    },
-    "Snoep" : {
-
-    },
-    "Solo tegen een slimme tegenstander" : {
-
-    },
-    "Solo uitdaging" : {
-
-    },
-    "speelt lekker mee" : {
-
-    },
-    "Spel verlaten" : {
-
-    },
-    "Spel verlaten?" : {
-
-    },
-    "SPELERS" : {
-
-    },
-    "Start spel" : {
-
-    },
-    "Statistieken per speler, met winreeks en snelste winst" : {
-
-    },
-    "Steen %lld" : {
-
-    },
-    "Ster" : {
-
-    },
-    "SYMBOOL" : {
-
-    },
-    "Tegen de computer" : {
-
-    },
-    "Tegen elkaar" : {
-
-    },
-    "Terug naar menu" : {
-
-    },
-    "THEMA" : {
-
-    },
-    "Thema %@" : {
-
-    },
-    "Thema %@, Gezinsversie nodig" : {
-
-    },
-    "Tik om ze te laten wisselen" : {
-
-    },
-    "Tik op een kolom en je steen valt naar het laagste vrije vakje." : {
-
-    },
-    "Toont de statistieken" : {
-
-    },
-    "Twee speelstenen" : {
-
-    },
-    "Twee spelers, één toestel" : {
-
-    },
-    "UITLEG" : {
-
-    },
-    "Verder spelen" : {
-
-    },
-    "Verlaten" : {
-
-    },
-    "Verwijderen" : {
-
-    },
-    "Vier op een rij!" : {
-
-    },
-    "Vis" : {
-
-    },
-    "Vlam" : {
-
-    },
-    "Voeg toe" : {
-
-    },
-    "Vogel" : {
-
-    },
-    "Volgende keer win jij vast!" : {
-
-    },
-    "Vraag even aan papa of mama" : {
-
-    },
-    "Winreeks" : {
-
-    },
-    "Zet terug" : {
-
-    },
-    "Zet teruggezet. %@ is weer aan de beurt." : {
-
-    },
-    "ZO SPEEL JE" : {
-
-    },
-    "ZO WIN JE" : {
-
-    },
-    "Zon" : {
-
-    }
+    "%lld stenen": {},
+    "%lld stenen, bovenste van %@": {
+      "localizations": {
+        "nl": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld stenen, bovenste van %2$@"
+          }
+        }
+      }
+    },
+    "%lld× gewonnen · %lld gespeeld": {
+      "localizations": {
+        "nl": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld× gewonnen · %2$lld gespeeld"
+          }
+        }
+      }
+    },
+    ", aan de beurt": {},
+    "2 spelers, één toestel": {},
+    "ABC": {},
+    "Alle drie de tegenstanders: Dommel, Robbie en Professor Punt": {},
+    "Alle kleurenthema's: Snoep, Oceaan en Nacht": {},
+    "Alles ontgrendelen": {},
+    "Annuleer": {},
+    "Avatar van %@ aanpassen": {},
+    "Bewaar": {},
+    "Blad": {},
+    "Blauw": {},
+    "Bliksem": {},
+    "Bliksemwinst": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lightning win"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Victoire éclair"
+          }
+        }
+      }
+    },
+    "Bordlegende": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Board legend"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Légende du plateau"
+          }
+        }
+      }
+    },
+    "CIJFERS": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NUMBERS"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CHIFFRES"
+          }
+        }
+      }
+    },
+    "Dat lukte niet": {},
+    "Dat mag liggend, staand of schuin.": {},
+    "De aankoop wacht nog op goedkeuring van een ouder.": {},
+    "De gezinsrecords horen bij de Gezinsversie.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Family records are part of the Family Version."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les records de famille font partie de la Version Famille."
+          }
+        }
+      }
+    },
+    "De middelste kolom is goud waard: daar passen de meeste rijtjes doorheen.": {},
+    "De overwinningen van dit profiel gaan verloren.": {},
+    "Dommel": {},
+    "Doorspelen": {},
+    "Eerder gekocht? Zet terug": {},
+    "Eerste potje": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First game"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Première partie"
+          }
+        }
+      }
+    },
+    "Er staat nog een spel klaar om verder te spelen.": {},
+    "Even sterk": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Evenly matched"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À égalité"
+          }
+        }
+      }
+    },
+    "Eén keer kopen, voor het hele gezin — ook via Delen met gezin.": {},
+    "GELUID": {},
+    "GEZIN": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FAMILY"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FAMILLE"
+          }
+        }
+      }
+    },
+    "GEZINSVERSIE": {},
+    "Gast": {},
+    "Gast 1": {},
+    "Gast 2": {},
+    "Geel": {},
+    "Geen profielen": {},
+    "Gelijkgespeeld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Draws"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Matchs nuls"
+          }
+        }
+      }
+    },
+    "Gelijkspel": {},
+    "Gelijkspel — het bord is vol!": {},
+    "Gelijkspel!": {},
+    "Geluidseffecten": {},
+    "Gespeeld": {},
+    "Gewonnen": {},
+    "Gewonnen na %lld stenen!": {},
+    "Gezinsrecords": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Family records"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Records de famille"
+          }
+        }
+      }
+    },
+    "Gezinsversie": {},
+    "Haas": {},
+    "Hart": {},
+    "Hattrick": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hat trick"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Triplé"
+          }
+        }
+      }
+    },
+    "Het bord heeft 7 kolommen en 6 rijen. Een volle kolom kan niet meer.": {},
+    "Hoe werkt Vier op een rij?": {},
+    "Hoe werkt het?": {},
+    "Hoeveel is %lld × %lld?": {
+      "localizations": {
+        "nl": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Hoeveel is %1$lld × %2$lld?"
+          }
+        }
+      }
+    },
+    "Hond": {},
+    "Initialen": {},
+    "Instellingen": {},
+    "Is het bord vol zonder rij van vier? Dan is het gelijkspel.": {},
+    "Je voortgang wordt bewaard.": {},
+    "Jij bent aan de beurt": {},
+    "KIES 2 SPELERS": {},
+    "KIES JE TEGENSTANDER": {},
+    "KIES JOUW PROFIEL": {},
+    "KLEUR": {},
+    "Kampioen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Champion"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Champion"
+          }
+        }
+      }
+    },
+    "Kat": {},
+    "Kijk ook naar de stenen van de ander — drie op een rij moet je meteen blokkeren!": {},
+    "Klaar!": {},
+    "Klassiek": {},
+    "Kleur %@": {},
+    "Kolom %lld": {},
+    "Kopen is niet gelukt. Controleer de internetverbinding en probeer het straks nog eens.": {},
+    "Koraal": {},
+    "Krijg als eerste vier stenen van jouw kleur op een rij.": {},
+    "Kroon": {},
+    "LAATSTE POTJES": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LATEST GAMES"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DERNIÈRES PARTIES"
+          }
+        }
+      }
+    },
+    "Laat hier je steen vallen": {},
+    "Laat je stenen vallen en win samen": {},
+    "Langste winreeks": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Longest winning streak"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus longue série de victoires"
+          }
+        }
+      }
+    },
+    "Lieveheersbeestje": {},
+    "Lopend spel vervangen?": {},
+    "Maak eerst een profiel aan om te spelen.": {},
+    "Maak eerst een speler aan": {},
+    "Maan": {},
+    "Meeste overwinningen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Most wins"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le plus de victoires"
+          }
+        }
+      }
+    },
+    "Meeste potjes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Most games"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le plus de parties"
+          }
+        }
+      }
+    },
+    "Mint": {},
+    "NIEUW PROFIEL": {},
+    "Naam": {},
+    "Naam van je kind": {},
+    "Naam wijzigen": {},
+    "Naar profielen": {},
+    "Nacht": {},
+    "Nieuw record!": {},
+    "Nieuw spel starten": {},
+    "Nog een keer!": {},
+    "Nog geen potjes gespeeld. Laat maar vallen!": {},
+    "Nog geen profielen. Maak er een aan om te spelen.": {},
+    "Oceaan": {},
+    "Of speel als gast": {},
+    "Of speel met twee gasten": {},
+    "Oké": {},
+    "Om de beurt: eerst de ene kleur, dan de andere.": {},
+    "Ontgrendel de Gezinsversie": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock the Family Version"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Débloquer la Version Famille"
+          }
+        }
+      }
+    },
+    "Ontgrendel voor %@": {},
+    "Ontgrendeld — veel plezier!": {},
+    "Onverslaanbaar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unbeatable"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imbattable"
+          }
+        }
+      }
+    },
+    "Oranje": {},
+    "Paars": {},
+    "Per ongeluk getikt? Met Zet terug mag je vorige steen er weer uit.": {},
+    "Pootafdruk": {},
+    "Potje %lld: gelijkspel": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Game %lld: draw"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Partie %lld : match nul"
+          }
+        }
+      }
+    },
+    "Potje %lld: gespeeld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Game %lld: played"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Partie %lld : jouée"
+          }
+        }
+      }
+    },
+    "Potje %lld: gewonnen met %lld stenen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Game %lld: won with %lld discs"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Partie %lld : gagnée avec %lld jetons"
+          }
+        }
+      }
+    },
+    "Professor Punt": {},
+    "Profielen": {},
+    "Robbie": {},
+    "SLIMME TRUCJES": {},
+    "SPELERS": {},
+    "SYMBOOL": {},
+    "Schildpad": {},
+    "Sluit": {},
+    "Sluiten": {},
+    "Snelste overwinning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fastest win"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Victoire la plus rapide"
+          }
+        }
+      }
+    },
+    "Snelste winst": {},
+    "Snoep": {},
+    "Solo tegen een slimme tegenstander": {},
+    "Solo uitdaging": {},
+    "Speel 10 potjes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play 10 games"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Joue 10 parties"
+          }
+        }
+      }
+    },
+    "Speel 25 potjes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play 25 games"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Joue 25 parties"
+          }
+        }
+      }
+    },
+    "Speel 50 potjes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play 50 games"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Joue 50 parties"
+          }
+        }
+      }
+    },
+    "Speel een keer gelijk": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finish a game in a draw"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fais un match nul"
+          }
+        }
+      }
+    },
+    "Speel een potje en zie de rij hier groeien!": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play a game and watch the row grow!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Joue une partie et regarde la rangée s'allonger !"
+          }
+        }
+      }
+    },
+    "Speel eerst een potje — daarna staan hier de records van het gezin.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play a game first — then the family records will appear here."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Joue d'abord une partie — les records de la famille apparaîtront ici."
+          }
+        }
+      }
+    },
+    "Speel je eerste potje": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Play your first game"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Joue ta première partie"
+          }
+        }
+      }
+    },
+    "Speelvogel": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Game fan"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fan de jeu"
+          }
+        }
+      }
+    },
+    "Spel verlaten": {},
+    "Spel verlaten?": {},
+    "Speler %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Player %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Joueur %lld"
+          }
+        }
+      }
+    },
+    "Start spel": {},
+    "Statistieken": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statistics"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statistiques"
+          }
+        }
+      }
+    },
+    "Statistieken per speler, met winreeks en snelste winst": {},
+    "Steen %lld": {},
+    "Ster": {},
+    "Sterspeler": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Star player"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Étoile du jeu"
+          }
+        }
+      }
+    },
+    "THEMA": {},
+    "TROFEEËN": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TROPHIES"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TROPHÉES"
+          }
+        }
+      }
+    },
+    "Tegen de computer": {},
+    "Tegen elkaar": {},
+    "Terug naar menu": {},
+    "Thema %@": {},
+    "Thema %@, Gezinsversie nodig": {},
+    "Tik om ze te laten wisselen": {},
+    "Tik op een kolom en je steen valt naar het laagste vrije vakje.": {},
+    "Toont de statistieken": {},
+    "Trofee %@, behaald. %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trophy %@, earned. %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trophée %@, obtenu. %@"
+          }
+        }
+      }
+    },
+    "Trofee %@, nog te verdienen. %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trophy %@, still to earn. %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trophée %@, encore à gagner. %@"
+          }
+        }
+      }
+    },
+    "Trofeeën, de laatste potjes en de gezinsrecords horen bij de Gezinsversie.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trophies, the latest games and the family records are part of the Family Version."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les trophées, les dernières parties et les records de famille font partie de la Version Famille."
+          }
+        }
+      }
+    },
+    "Turbowinst": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turbo win"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Victoire turbo"
+          }
+        }
+      }
+    },
+    "Twee speelstenen": {},
+    "Twee spelers, één toestel": {},
+    "UITLEG": {},
+    "Verder spelen": {},
+    "Verlaten": {},
+    "Verwijderen": {},
+    "Vier op een rij!": {},
+    "Vis": {},
+    "Vlam": {},
+    "Voeg toe": {},
+    "Vogel": {},
+    "Volgende keer win jij vast!": {},
+    "Vraag even aan papa of mama": {},
+    "Wie heeft het record in huis?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Who holds the record?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qui détient le record ?"
+          }
+        }
+      }
+    },
+    "Win 10 potjes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Win 10 games"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gagne 10 parties"
+          }
+        }
+      }
+    },
+    "Win 3 potjes op rij": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Win 3 games in a row"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gagne 3 parties d'affilée"
+          }
+        }
+      }
+    },
+    "Win 5 potjes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Win 5 games"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gagne 5 parties"
+          }
+        }
+      }
+    },
+    "Win 5 potjes op rij": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Win 5 games in a row"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gagne 5 parties d'affilée"
+          }
+        }
+      }
+    },
+    "Win een potje": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Win a game"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gagne une partie"
+          }
+        }
+      }
+    },
+    "Win met 5 stenen of minder": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Win with 5 discs or fewer"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gagne avec 5 jetons ou moins"
+          }
+        }
+      }
+    },
+    "Win met 7 stenen of minder": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Win with 7 discs or fewer"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gagne avec 7 jetons ou moins"
+          }
+        }
+      }
+    },
+    "Winmachine": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Winning machine"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Machine à gagner"
+          }
+        }
+      }
+    },
+    "Winnaar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Winner"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vainqueur"
+          }
+        }
+      }
+    },
+    "Winreeks": {},
+    "ZO SPEEL JE": {},
+    "ZO WIN JE": {},
+    "Zet terug": {},
+    "Zet teruggezet. %@ is weer aan de beurt.": {},
+    "Zon": {},
+    "beste %lld": {},
+    "gooit maar wat": {},
+    "in %lld stenen": {},
+    "leeg": {},
+    "rekent alles uit": {},
+    "speelt lekker mee": {}
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

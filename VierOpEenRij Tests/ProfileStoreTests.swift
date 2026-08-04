@@ -33,6 +33,32 @@ final class ProfileStoreTests: XCTestCase {
         XCTAssertEqual(store.humanProfiles[0].name.count, ProfileStore.maxNameLength)
     }
 
+    func testHistoryRecordsResultsAndStaysCapped() {
+        let store = ProfileStore(fileURL: fileURL)
+        store.addProfile(name: "Lene")
+        store.addProfile(name: "Ellis")
+        let lene = store.humanProfiles[0]
+        let ellis = store.humanProfiles[1]
+        let players = [GamePlayer(profile: lene), GamePlayer(profile: ellis)]
+
+        store.recordGameResult(players: players, winnerProfileIDs: [lene.id], winnerDiscCount: 9)
+        store.recordGameResult(players: players, winnerProfileIDs: [], winnerDiscCount: 0)
+
+        let winner = store.humanProfiles[0]
+        XCTAssertEqual(winner.history.count, 2)
+        XCTAssertEqual(winner.history[0].discs, 9)
+        XCTAssertTrue(winner.history[0].won)
+        XCTAssertTrue(winner.history[1].draw)
+        // De verliezer krijgt geen stenen in zijn record.
+        XCTAssertEqual(store.humanProfiles[1].history[0].discs, 0)
+
+        // Ver voorbij de limiet: de oudste potjes vallen eraf.
+        for _ in 0..<(ProfileStore.maxHistoryLength + 5) {
+            store.recordGameResult(players: players, winnerProfileIDs: [lene.id], winnerDiscCount: 10)
+        }
+        XCTAssertEqual(store.humanProfiles[0].history.count, ProfileStore.maxHistoryLength)
+    }
+
     func testRecordWinUpdatesStreakAndFastestWin() {
         let store = ProfileStore(fileURL: fileURL)
         store.addProfile(name: "Lene")

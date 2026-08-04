@@ -10,6 +10,7 @@
 		023CE42BCE0EE8DC1917F949 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50500147B6571AF7B2BEEE /* SettingsView.swift */; };
 		0C8F2E1693C2930B24EBDE28 /* ComputerLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079C280430F6D0558CFC2CAF /* ComputerLevel.swift */; };
 		19C95908BA4B54AEDAFDE5C7 /* ToyButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CCE472B3F4A6E050499D11 /* ToyButtonStyle.swift */; };
+		1BC180BB2C68B050F667F735 /* ThemedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5343E22ECF112CC4AA8630A /* ThemedBackground.swift */; };
 		1BF6D200D926FFB77DC25338 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993E2ADDCF7987D7CDB97BC4 /* GameEngine.swift */; };
 		1BFB40ED1E6E715ADAFF6DDD /* ThemeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F54FEBFCA83C99B4B1314E /* ThemeStore.swift */; };
 		1CAAF06DC51D5DA88BCBEA90 /* GamePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8B5BF46A018F9F73DFFEBC /* GamePlayer.swift */; };
@@ -140,6 +141,7 @@
 		EE50500147B6571AF7B2BEEE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F11CCF430B4BCC323A5329D0 /* plop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = plop.wav; sourceTree = "<group>"; };
 		F346471E3F11E269F3999A99 /* AvatarBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarBadge.swift; sourceTree = "<group>"; };
+		F5343E22ECF112CC4AA8630A /* ThemedBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedBackground.swift; sourceTree = "<group>"; };
 		F8B1C88B604FA974FB6E5359 /* ProfileBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBadge.swift; sourceTree = "<group>"; };
 		FF62ECC4C7182DBD817C4AEC /* TurnBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnBannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,6 +197,7 @@
 			children = (
 				BE71D21345E660C7DA502DAD /* AppMetrics.swift */,
 				C6228A2053E80F61D9777894 /* AppTheme.swift */,
+				F5343E22ECF112CC4AA8630A /* ThemedBackground.swift */,
 				88B545067244FD1B85D50719 /* ThemePalette.swift */,
 				02F54FEBFCA83C99B4B1314E /* ThemeStore.swift */,
 				662AF273487D2B9ACFF6E270 /* ToyBlock.swift */,
@@ -436,6 +439,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
+				en,
+				fr,
 				nl,
 			);
 			mainGroup = F2F2B1A6AE30E96DCF10278D;
@@ -528,6 +533,7 @@
 				B1BB35EA428B0CBDA6FB781F /* SplitMix64.swift in Sources */,
 				EB5EFD548D1F1A2922FF7ECE /* ThemePalette.swift in Sources */,
 				1BFB40ED1E6E715ADAFF6DDD /* ThemeStore.swift in Sources */,
+				1BC180BB2C68B050F667F735 /* ThemedBackground.swift in Sources */,
 				E56D88EF869531B08924A256 /* ToyBlock.swift in Sources */,
 				19C95908BA4B54AEDAFDE5C7 /* ToyButtonStyle.swift in Sources */,
 				E0DE7126D11E88B8211AF508 /* ToyDialog.swift in Sources */,

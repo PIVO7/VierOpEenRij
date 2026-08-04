@@ -27,7 +27,7 @@ struct GameView: View {
 
     var body: some View {
         ZStack {
-            AppTheme.cream.ignoresSafeArea()
+            ThemedBackground()
 
             VStack(spacing: m.gutter) {
                 GameHeaderView(
@@ -159,7 +159,7 @@ struct GameView: View {
                     .frame(minHeight: m.tapTarget)
             }
             .buttonStyle(ToyButtonStyle(
-                fill: engine.canUndo ? .white : AppTheme.offFill,
+                fill: engine.canUndo ? AppTheme.card : AppTheme.offFill,
                 radius: m.cellCorner + 1,
                 depth: 3,
                 border: m.thinBorder + 0.5

@@ -60,7 +60,7 @@ struct FamilyRecordsView: View {
                             format: { String(localized: "\($0) stenen") },
                             // Hier wint juist het kleinste getal: hoe minder
                             // stenen, hoe knapper de overwinning.
-                            best: { $0.filter { $0 > 0 }.min() }
+                            best: FamilyRecordMath.lowestPositive
                         )
                         recordRow(
                             title: String(localized: "Meeste potjes"),
@@ -95,11 +95,9 @@ struct FamilyRecordsView: View {
         format: (Int) -> String,
         best: ([Int]) -> Int? = { $0.max() }
     ) -> some View {
-        let record = best(contenders.map(value))
-        let holders = contenders.filter { value($0) == record }
-
-        // Een record van nul is nog geen record; die rij wacht stilletjes.
-        if let record, record > 0 {
+        // De rekensom staat in FamilyRecordMath; een record van nul is nog
+        // geen record en die rij wacht dan stilletjes.
+        if let (record, holders) = FamilyRecordMath.record(in: contenders, value: value, best: best) {
             HStack(spacing: m.gutter * 0.8) {
                 Image(systemName: icon)
                     .font(.system(size: m.bodySize, weight: .black))

@@ -72,6 +72,7 @@
 		F78D1DA55F775C340CCD8ED7 /* ParentalGateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2540F432F17A9B993CF00038 /* ParentalGateTests.swift */; };
 		F962182C78F194C0DC581520 /* AppMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE71D21345E660C7DA502DAD /* AppMetrics.swift */; };
 		FBAFDB171594E025949C111E /* HomeHeroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93541C20F4AA9788EA82B1AE /* HomeHeroView.swift */; };
+		FDFCC1AB77F4041659B1A998 /* GameScreenRenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741333FD2E3061FCF7D3B6F /* GameScreenRenderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		30C7A2787094975934FD68DB /* SplitMix64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitMix64.swift; sourceTree = "<group>"; };
 		334FB9D912FBFA8EE791775B /* GameHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHeaderView.swift; sourceTree = "<group>"; };
 		34C6604E72A70C7FCE923182 /* ComputerAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputerAI.swift; sourceTree = "<group>"; };
+		3741333FD2E3061FCF7D3B6F /* GameScreenRenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenRenderTests.swift; sourceTree = "<group>"; };
 		37CCE472B3F4A6E050499D11 /* ToyButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyButtonStyle.swift; sourceTree = "<group>"; };
 		3F2D3ADDC676EFD385856C1B /* GameResultOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultOverlay.swift; sourceTree = "<group>"; };
 		49687E42A9F40C930A960E85 /* FamilyRecordMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyRecordMath.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				6EBFA41C5EA3CE118E8318DB /* BoardTests.swift */,
 				866DF91EA6635F61A5017D7E /* ComputerAITests.swift */,
 				8A5E700CCCF2847DE6CEE4A3 /* GameEngineTests.swift */,
+				3741333FD2E3061FCF7D3B6F /* GameScreenRenderTests.swift */,
 				9F48DF70C97E99BC7D8E3812 /* GameStoreTests.swift */,
 				2540F432F17A9B993CF00038 /* ParentalGateTests.swift */,
 				56E8F95CF0A9AAAA80FCC98D /* ProfileStoreTests.swift */,
@@ -493,6 +496,7 @@
 				CE5D10701E14593A2349E567 /* BoardTests.swift in Sources */,
 				567995EE57C535C26ADCBB4D /* ComputerAITests.swift in Sources */,
 				A35717A7ECFDD1AC6C756A1F /* GameEngineTests.swift in Sources */,
+				FDFCC1AB77F4041659B1A998 /* GameScreenRenderTests.swift in Sources */,
 				A1DC41A2E6EE189F5F00846C /* GameStoreTests.swift in Sources */,
 				F78D1DA55F775C340CCD8ED7 /* ParentalGateTests.swift in Sources */,
 				A35B56DB5E8397CE6920B89E /* ProfileStoreTests.swift in Sources */,
@@ -605,7 +609,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = VB6FS3N78T;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -693,7 +697,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VB6FS3N78T;
 				ENABLE_NS_ASSERTIONS = NO;

@@ -30,14 +30,16 @@ struct GameView: View {
             ThemedBackground()
 
             VStack(spacing: m.gutter) {
+                topBar
+
+                Spacer(minLength: 0)
+
+                // De tussenstand vlak boven het bord dat hij samenvat.
                 GameHeaderView(
                     players: engine.players,
                     currentPlayerID: engine.currentPlayer.id,
-                    discIndex: engine.discIndex(for:),
-                    onLeave: requestLeave
+                    discIndex: engine.discIndex(for:)
                 )
-
-                Spacer(minLength: 0)
 
                 statusLine
 
@@ -167,10 +169,32 @@ struct GameView: View {
             .disabled(!engine.canUndo)
 
             Spacer()
+        }
+    }
 
+    /// De dunne bovenrand: de steenteller (passieve meta-info) met de
+    /// sluitknop ernaast. De tussenstand staat niet meer hier maar vlak
+    /// boven het bord.
+    private var topBar: some View {
+        HStack(spacing: 8) {
+            // Zelfde vertaalsleutel als voorheen; alleen de opmaak is
+            // hoofdletters, in de stijl van de rondeteller in Dobbel.
             Text("Steen \(engine.moves.count + (engine.isFinished ? 0 : 1))")
-                .font(AppTheme.rounded(m.captionSize, .bold))
+                .textCase(.uppercase)
+                .font(AppTheme.rounded(m.captionSize * 0.92))
+                .kerning(1.6)
                 .foregroundStyle(AppTheme.faint)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 4)
+
+            Button(action: requestLeave) {
+                Label("Spel verlaten", systemImage: "xmark")
+                    .labelStyle(.iconOnly)
+                    .font(.system(size: m.captionSize + 2, weight: .black))
+                    .foregroundStyle(AppTheme.ink)
+                    .frame(width: m.tapTarget, height: m.tapTarget)
+            }
+            .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: 3, border: m.thinBorder))
         }
     }
 

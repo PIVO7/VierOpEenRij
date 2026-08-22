@@ -32,9 +32,9 @@ struct GameView: View {
             VStack(spacing: m.gutter) {
                 topBar
 
-                Spacer(minLength: 0)
-
                 // De tussenstand vlak boven het bord dat hij samenvat.
+                // Alles hangt aan de bovenrand; de restruimte valt onderaan,
+                // bij de hand, in plaats van als gat midden op het scherm.
                 GameHeaderView(
                     players: engine.players,
                     currentPlayerID: engine.currentPlayer.id,

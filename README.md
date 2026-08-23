@@ -1,7 +1,7 @@
 # Vier op een rij (SwiftUI)
 
 iOS-app voor kinderen: klassiek Vier op een rij met profielen, lokale
-multiplayer en solo tegen de computer. Zusje van [Dobbel](../Dobbel): zelfde
+multiplayer en solo tegen de computer. Zusje van [Dobbel](https://github.com/PIVO7/Dobbel): zelfde
 speelgoedstijl, zelfde thema's en dezelfde Gezinsversie-aankoop.
 
 ## Features

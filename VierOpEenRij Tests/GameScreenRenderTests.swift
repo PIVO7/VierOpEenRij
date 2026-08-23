@@ -49,4 +49,61 @@ final class GameScreenRenderTests: XCTestCase {
                 .write(to: outputDirectory.appending(path: "spelscherm\(variant.suffix).png"))
         }
     }
+
+    /// De profieleditor — het scherm waarop naam, kleur en symbool samen
+    /// worden gekozen. De echte formulierinhoud, gestapeld zonder ScrollView
+    /// (die kan ImageRenderer niet aan).
+    func testRenderProfileEditor() throws {
+        guard let outputDirectory else {
+            throw XCTSkip("RENDER_OUTPUT_DIR niet gezet; rooktest alleen op verzoek.")
+        }
+
+        let view = VStack(spacing: 0) {
+            ProfileEditorFormView(
+                name: .constant("Lene"),
+                colorIndex: .constant(4),
+                symbol: .constant("cat.fill"),
+                staticNameForRender: true
+            )
+            Spacer(minLength: 24)
+        }
+        .padding(.horizontal, 22)
+        .background(AppTheme.cream)
+        .environment(\.metrics, .phone)
+        .frame(width: 393, height: 852)
+
+        let renderer = ImageRenderer(content: view)
+        renderer.scale = 2
+        let image = try XCTUnwrap(renderer.uiImage)
+        try XCTUnwrap(image.pngData())
+            .write(to: outputDirectory.appending(path: "profieleditor.png"))
+    }
+
+    /// De profielenlijst: de aanmaakknop met daaronder rijen met potloodje.
+    func testRenderProfilesList() throws {
+        guard let outputDirectory else {
+            throw XCTSkip("RENDER_OUTPUT_DIR niet gezet; rooktest alleen op verzoek.")
+        }
+
+        let lene = PlayerProfile(name: "Lene", wins: 3, gamesPlayed: 7, avatarColorIndex: 4, avatarSymbol: "cat.fill")
+        let papa = PlayerProfile(name: "Papa", wins: 2, gamesPlayed: 7, avatarColorIndex: 1, avatarSymbol: "star.fill")
+        let view = VStack(spacing: 16) {
+            NewProfileButton {}
+            ProfileRowView(profile: lene, onEdit: { _, _, _ in }, onDelete: {})
+            ProfileRowView(profile: papa, onEdit: { _, _, _ in }, onDelete: {})
+            Spacer(minLength: 24)
+        }
+        .padding(.horizontal, 22)
+        .padding(.top, 24)
+        .background(AppTheme.cream)
+        .environment(EntitlementStore(previewUnlocked: true))
+        .environment(\.metrics, .phone)
+        .frame(width: 393, height: 852)
+
+        let renderer = ImageRenderer(content: view)
+        renderer.scale = 2
+        let image = try XCTUnwrap(renderer.uiImage)
+        try XCTUnwrap(image.pngData())
+            .write(to: outputDirectory.appending(path: "profielen.png"))
+    }
 }

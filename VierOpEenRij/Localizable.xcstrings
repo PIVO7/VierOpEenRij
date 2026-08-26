@@ -1,54 +1,6 @@
 {
   "sourceLanguage" : "nl",
   "strings" : {
-    "NAAM" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "NAME"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PRÉNOM"
-          }
-        }
-      }
-    },
-    "Nieuw profiel" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New profile"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nouveau profil"
-          }
-        }
-      }
-    },
-    "Profiel van %@ aanpassen" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Edit %@’s profile"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modifier le profil de %@"
-          }
-        }
-      }
-    },
     ", aan de beurt" : {
       "localizations" : {
         "en" : {
@@ -82,6 +34,7 @@
       }
     },
     "%@ hernoemen" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -601,6 +554,7 @@
       }
     },
     "Avatar van %@ aanpassen" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -633,6 +587,7 @@
       }
     },
     "Bewaar" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1906,6 +1861,7 @@
       }
     },
     "Naam" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1917,6 +1873,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prénom"
+          }
+        }
+      }
+    },
+    "NAAM" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NAME"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PRÉNOM"
           }
         }
       }
@@ -1938,6 +1910,7 @@
       }
     },
     "Naam wijzigen" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1985,7 +1958,24 @@
         }
       }
     },
+    "Nieuw profiel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New profile"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveau profil"
+          }
+        }
+      }
+    },
     "NIEUW PROFIEL" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2333,6 +2323,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Professor Punt"
+          }
+        }
+      }
+    },
+    "Profiel van %@ aanpassen" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit %@’s profile"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifier le profil de %@"
           }
         }
       }
@@ -3222,6 +3228,7 @@
       }
     },
     "Voeg toe" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

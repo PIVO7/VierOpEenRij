@@ -59,6 +59,7 @@ final class RenderSmokeTests: XCTestCase {
                 message: "Lene wint na 9 stenen!",
                 discCounts: [9, 8],
                 isNewRecord: true,
+                animatesIn: false,
                 onRematch: {},
                 onClose: {}
             )

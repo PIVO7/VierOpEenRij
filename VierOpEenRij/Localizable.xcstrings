@@ -843,7 +843,22 @@
         }
       }
     },
-    "Er is geen eerdere aankoop gevonden voor dit Apple-account." : {},
+    "Er is geen eerdere aankoop gevonden voor dit Apple-account." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No previous purchase was found for this Apple Account."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun achat antérieur trouvé pour ce compte Apple."
+          }
+        }
+      }
+    },
     "Er staat nog een spel klaar om verder te spelen." : {
       "localizations" : {
         "en" : {
@@ -2839,7 +2854,22 @@
         }
       }
     },
-    "Terugzetten is niet gelukt. Controleer de internetverbinding en probeer het straks nog eens." : {},
+    "Terugzetten is niet gelukt. Controleer de internetverbinding en probeer het straks nog eens." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restoring didn't work. Check the internet connection and try again later."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La restauration a échoué. Vérifie la connexion Internet et réessaie plus tard."
+          }
+        }
+      }
+    },
     "Thema %@" : {
       "localizations" : {
         "en" : {
@@ -3573,6 +3603,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "jetons"
+          }
+        }
+      }
+    },
+    "Lopend spel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game in progress"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partie en cours"
           }
         }
       }

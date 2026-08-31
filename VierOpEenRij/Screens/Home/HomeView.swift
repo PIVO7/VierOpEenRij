@@ -50,9 +50,12 @@ struct HomeView: View {
                             .padding(.top, m.gutter * 1.6)
                             .padding(.bottom, m.gutter * 1.5)
 
-                            // Restruimte verdeelt zich vóór en na de kaarten,
-                            // zodat het menu tussen band en rek zweeft.
+                            // Beperkte ademruimte onder de band: de kaarten
+                            // sluiten aan bij de titel, en de resterende
+                            // lucht valt onder de pillen — open lucht boven
+                            // het rek in plaats van een gat in het scherm.
                             Spacer(minLength: 0)
+                                .frame(maxHeight: m.gutter * 2.5)
 
                             VStack(spacing: m.gutter) {
                                 if let saved = gameStore.savedGame {

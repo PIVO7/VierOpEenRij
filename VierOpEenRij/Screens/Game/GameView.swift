@@ -17,9 +17,7 @@ struct GameView: View {
     @State private var didRecordResult = false
     @State private var isNewRecord = false
     @State private var showResult = false
-    @State private var showTurnBanner = false
     @State private var showExitConfirm = false
-    @State private var bannerDismissal: Task<Void, Never>?
     @State private var resultReveal: Task<Void, Never>?
     @State private var dropPulse = 0
     @State private var turnPulse = 0
@@ -62,16 +60,6 @@ struct GameView: View {
             // rekt de kop op een iPad uit over het volle scherm.
             .frame(maxWidth: m.contentMaxWidth)
             .frame(maxWidth: .infinity)
-
-            if showTurnBanner {
-                TurnBannerView(player: engine.currentPlayer, title: bannerTitle)
-                    .transition(
-                        reduceMotion
-                            ? .opacity
-                            : .move(edge: .top).combined(with: .opacity)
-                    )
-                    .zIndex(2)
-            }
 
             if showResult {
                 GameResultOverlay(
@@ -127,7 +115,7 @@ struct GameView: View {
         }
         .onChange(of: engine.turnJustChanged) { _, changed in
             guard changed else { return }
-            presentTurnBanner()
+            announceTurnChange()
             engine.acknowledgeTurnChange()
         }
         .sensoryFeedback(.impact(flexibility: .solid, intensity: 0.85), trigger: dropPulse)
@@ -146,9 +134,7 @@ struct GameView: View {
             .lineLimit(1)
             .minimumScaleFactor(0.7)
             .frame(maxWidth: .infinity)
-            // Ook weg zolang de beurtbanner hangt: op lage schermen valt de
-            // banner precies over deze regel heen.
-            .opacity(showResult || showTurnBanner ? 0 : 1)
+            .opacity(showResult ? 0 : 1)
     }
 
     private var undoRow: some View {
@@ -232,13 +218,13 @@ struct GameView: View {
 
     // MARK: - Reacties op het spel
 
-    /// Solo spreekt de banner je aan; met z'n tweeën aan één toestel noemt
-    /// hij de naam.
-    private var bannerTitle: String? {
+    /// Solo spreekt de aankondiging je aan; met z'n tweeën aan één toestel
+    /// noemt ze de naam.
+    private var turnAnnouncement: String {
         if engine.mode == .versusComputer, !engine.currentPlayer.isComputer {
             return String(localized: "Jij bent aan de beurt")
         }
-        return nil
+        return String(localized: "\(engine.currentPlayer.name) is aan de beurt")
     }
 
     private func gameDidFinish() {
@@ -282,31 +268,14 @@ struct GameView: View {
         )
     }
 
-    private func presentTurnBanner() {
+    /// Geen rood vlak meer bij een beurtwissel: de kop en de statusregel
+    /// zeggen al wie er mag. De tik, het geluid en de VoiceOver-aankondiging
+    /// markeren het moment.
+    private func announceTurnChange() {
         guard !engine.isFinished else { return }
         turnPulse += 1
-        AccessibilityNotification.Announcement(
-            bannerTitle ?? String(localized: "\(engine.currentPlayer.name) is aan de beurt")
-        ).post()
-
-        // De melding is uitschakelbaar; de tik en de VoiceOver-aankondiging
-        // hierboven blijven, want die vertellen hetzelfde zonder rood vlak.
-        guard TurnBanner.isEnabled else { return }
         SoundPlayer.shared.play(.turn)
-
-        withAnimation(reduceMotion ? .easeOut(duration: 0.15) : .spring(response: 0.35, dampingFraction: 0.8)) {
-            showTurnBanner = true
-        }
-        // Bij twee snelle beurtwissels zou de timer van de eerste de banner
-        // van de tweede verbergen; annuleren voorkomt dat.
-        bannerDismissal?.cancel()
-        bannerDismissal = Task {
-            try? await Task.sleep(for: .milliseconds(reduceMotion ? 700 : 1100))
-            guard !Task.isCancelled else { return }
-            withAnimation(.easeOut(duration: 0.2)) {
-                showTurnBanner = false
-            }
-        }
+        AccessibilityNotification.Announcement(turnAnnouncement).post()
     }
 
     private func persistProgress() {

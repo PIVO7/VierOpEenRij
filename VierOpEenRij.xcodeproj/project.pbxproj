@@ -30,6 +30,7 @@
 		66FEFD04D735B08E3ED1E16A /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EA6B48EE4A91EF29217B6 /* BoardView.swift */; };
 		68551D0FC5CBA6BA3FEF6E93 /* GameSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F6A9F1E683BAE4D01108BF /* GameSetupView.swift */; };
 		6F85E1A84064DA89E3282766 /* DiscView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C722D4D2C229951E8E7B55A /* DiscView.swift */; };
+		73DCED3FC426CA25DFEB9E1F /* ToyToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FE32B076F8BF0F155154A7 /* ToyToggleStyle.swift */; };
 		76126D69D47E308FF5B5EB47 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6228A2053E80F61D9777894 /* AppTheme.swift */; };
 		792C853997A6961CC499E0A0 /* FamilyRecordMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49687E42A9F40C930A960E85 /* FamilyRecordMath.swift */; };
 		7FFCFA2B95E5B5BB0B65E444 /* ProfileEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2B05BC3388DC6B7D27E6A /* ProfileEditorView.swift */; };
@@ -121,6 +122,7 @@
 		8290BC70EA831D42580FD996 /* ActiveGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGame.swift; sourceTree = "<group>"; };
 		85BE977A8F2159B779214559 /* FamilyRecordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyRecordsView.swift; sourceTree = "<group>"; };
 		866DF91EA6635F61A5017D7E /* ComputerAITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputerAITests.swift; sourceTree = "<group>"; };
+		87FE32B076F8BF0F155154A7 /* ToyToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyToggleStyle.swift; sourceTree = "<group>"; };
 		8877460D23CB304EC5EB278B /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		88B545067244FD1B85D50719 /* ThemePalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePalette.swift; sourceTree = "<group>"; };
 		8A5E700CCCF2847DE6CEE4A3 /* GameEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngineTests.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				02F54FEBFCA83C99B4B1314E /* ThemeStore.swift */,
 				662AF273487D2B9ACFF6E270 /* ToyBlock.swift */,
 				37CCE472B3F4A6E050499D11 /* ToyButtonStyle.swift */,
+				87FE32B076F8BF0F155154A7 /* ToyToggleStyle.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				E56D88EF869531B08924A256 /* ToyBlock.swift in Sources */,
 				19C95908BA4B54AEDAFDE5C7 /* ToyButtonStyle.swift in Sources */,
 				E0DE7126D11E88B8211AF508 /* ToyDialog.swift in Sources */,
+				73DCED3FC426CA25DFEB9E1F /* ToyToggleStyle.swift in Sources */,
 				345B065C302121AB627456A1 /* VierOpEenRijApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

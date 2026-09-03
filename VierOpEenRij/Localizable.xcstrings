@@ -489,6 +489,22 @@
         }
       }
     },
+    "Aan" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activé"
+          }
+        }
+      }
+    },
     "Alle drie de tegenstanders: Dommel, Robbie en Professor Punt" : {
       "localizations" : {
         "en" : {
@@ -3074,6 +3090,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "EXPLICATIONS"
+          }
+        }
+      }
+    },
+    "Uit" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Off"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Désactivé"
           }
         }
       }

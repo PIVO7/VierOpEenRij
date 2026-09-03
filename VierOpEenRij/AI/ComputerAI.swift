@@ -7,6 +7,53 @@ struct ComputerAI {
     /// Middenkolommen zijn meer waard: daar lopen de meeste rijtjes doorheen.
     private static let centerWeights = [3, 4, 6, 8, 6, 4, 3]
 
+    /// De zet voor deze spelvorm. Klassiek is dat altijd een val; bij Pop-out
+    /// weegt elke tegenstander ook het wegtrekken van een eigen steen mee —
+    /// op zijn eigen niveau.
+    func chooseMove(
+        board: Board,
+        player: Int,
+        level: ComputerLevel,
+        variant: GameVariant,
+        using rng: inout some RandomNumberGenerator
+    ) -> GameMove {
+        guard variant == .popOut else {
+            return .drop(chooseColumn(board: board, player: player, level: level, using: &rng))
+        }
+        let drops = board.availableColumns
+        let pops = board.poppableColumns(for: player)
+        precondition(!drops.isEmpty || !pops.isEmpty, "Geen zet mogelijk")
+
+        switch level {
+        case .easy:
+            if let win = winningColumn(board: board, player: player), Bool.random(using: &rng) {
+                return .drop(win)
+            }
+            // Dommel trekt af en toe zomaar een steen weg — ook als dat dom is.
+            if let pop = pops.randomElement(using: &rng),
+               drops.isEmpty || Int.random(in: 0..<4, using: &rng) == 0 {
+                return .pop(pop)
+            }
+            return .drop(weightedRandom(from: drops, using: &rng))
+
+        case .medium:
+            if let win = winningColumn(board: board, player: player) { return .drop(win) }
+            if let win = winningPop(board: board, player: player) { return .pop(win) }
+            if let block = winningColumn(board: board, player: 1 - player) { return .drop(block) }
+            let safeDrops = drops.filter { !givesOpponentWin(board: board, player: player, column: $0) }
+            if !safeDrops.isEmpty { return .drop(weightedRandom(from: safeDrops, using: &rng)) }
+            // Vallen kan niet meer of is overal gevaarlijk: dan een pop die de
+            // ander niets geeft, en pas daarna wat er nog rest.
+            let safePops = pops.filter { !popGivesOpponentWin(board: board, player: player, column: $0) }
+            if let pop = safePops.randomElement(using: &rng) { return .pop(pop) }
+            if !drops.isEmpty { return .drop(weightedRandom(from: drops, using: &rng)) }
+            return .pop(pops[0])
+
+        case .hard:
+            return minimaxMove(board: board, player: player, variant: variant, using: &rng)
+        }
+    }
+
     func chooseColumn(
         board: Board,
         player: Int,
@@ -39,7 +86,7 @@ struct ComputerAI {
             return weightedRandom(from: safe.isEmpty ? available : safe, using: &rng)
 
         case .hard:
-            return minimaxColumn(board: board, player: player, using: &rng)
+            return minimaxMove(board: board, player: player, variant: .classic, using: &rng).column
         }
     }
 
@@ -53,6 +100,25 @@ struct ComputerAI {
             }
         }
         return nil
+    }
+
+    /// De kolom waaruit een eigen steen trekken meteen vier oplevert, of
+    /// `nil`. Krijgt de ander er ook vier van, dan wint toch de trekker.
+    func winningPop(board: Board, player: Int) -> Int? {
+        for column in board.poppableColumns(for: player) {
+            var copy = board
+            if copy.pop(player: player, from: column), copy.winningLine(for: player) != nil {
+                return column
+            }
+        }
+        return nil
+    }
+
+    /// Waar: deze pop geeft alleen de ander vier op een rij — zelfmoord.
+    private func popGivesOpponentWin(board: Board, player: Int, column: Int) -> Bool {
+        var copy = board
+        guard copy.pop(player: player, from: column) else { return true }
+        return copy.winningLine(for: player) == nil && copy.winningLine(for: 1 - player) != nil
     }
 
     /// Waar: na deze zet kan de tegenstander bovenop dezelfde kolom winnen.
@@ -82,36 +148,54 @@ struct ComputerAI {
     // MARK: - Professor Punt
 
     /// Zo ver vooruit dat hij dubbele dreigingen opzet, maar kort genoeg om
-    /// binnen een tel te beslissen.
-    private static let searchDepth = 7
+    /// binnen een tel te beslissen. Bij Pop-out zijn er twee keer zoveel
+    /// zetten per beurt, dus daar kijkt hij minder ver.
+    private static func searchDepth(for variant: GameVariant) -> Int {
+        variant == .popOut ? 5 : 7
+    }
 
-    private func minimaxColumn(board: Board, player: Int, using rng: inout some RandomNumberGenerator) -> Int {
+    private func minimaxMove(
+        board: Board,
+        player: Int,
+        variant: GameVariant,
+        using rng: inout some RandomNumberGenerator
+    ) -> GameMove {
         // Winnen en blokkeren eerst: dat scheelt zoekwerk en kan nooit fout.
-        if let win = winningColumn(board: board, player: player) { return win }
-        if let block = winningColumn(board: board, player: 1 - player) { return block }
+        if let win = winningColumn(board: board, player: player) { return .drop(win) }
+        if variant == .popOut, let win = winningPop(board: board, player: player) { return .pop(win) }
+        if let block = winningColumn(board: board, player: 1 - player) { return .drop(block) }
 
-        var bestColumns: [Int] = []
+        let depth = Self.searchDepth(for: variant)
+        var bestMoves: [GameMove] = []
         var bestScore = Int.min
-        for column in orderedColumns(board.availableColumns) {
-            var copy = board
-            copy.drop(player: player, in: column)
-            let score = -negamax(
-                board: copy,
-                player: 1 - player,
-                depth: Self.searchDepth - 1,
-                alpha: Int.min + 1,
-                beta: Int.max - 1
-            )
+        for move in legalMoves(board: board, player: player, variant: variant) {
+            guard let (copy, outcome) = apply(move, to: board, player: player) else { continue }
+            let score: Int
+            switch outcome {
+            case .win: score = 100_000 + depth
+            case .loss: score = -(100_000 + depth)
+            case .open:
+                score = -negamax(
+                    board: copy,
+                    player: 1 - player,
+                    depth: depth - 1,
+                    alpha: Int.min + 1,
+                    beta: Int.max - 1,
+                    variant: variant
+                )
+            }
             if score > bestScore {
                 bestScore = score
-                bestColumns = [column]
+                bestMoves = [move]
             } else if score == bestScore {
-                bestColumns.append(column)
+                bestMoves.append(move)
             }
         }
         // Gelijkwaardige zetten wisselen elkaar af, anders speelt de
         // professor elk potje identiek.
-        return bestColumns.randomElement(using: &rng) ?? board.availableColumns[0]
+        return bestMoves.randomElement(using: &rng)
+            ?? board.availableColumns.first.map(GameMove.drop)
+            ?? .pop(board.poppableColumns(for: player)[0])
     }
 
     /// Midden eerst zoeken: alfa-bèta snoeit dan het hardst.
@@ -119,21 +203,51 @@ struct ComputerAI {
         columns.sorted { abs($0 - 3) < abs($1 - 3) }
     }
 
-    private func negamax(board: Board, player: Int, depth: Int, alpha: Int, beta: Int) -> Int {
-        if board.isFull { return 0 }
+    /// Alle zetten die nu kunnen: vallen, en bij Pop-out ook trekken.
+    private func legalMoves(board: Board, player: Int, variant: GameVariant) -> [GameMove] {
+        var moves = orderedColumns(board.availableColumns).map(GameMove.drop)
+        if variant == .popOut {
+            moves += board.poppableColumns(for: player).map(GameMove.pop)
+        }
+        return moves
+    }
+
+    private enum Outcome { case win, loss, open }
+
+    /// Past een zet toe op een kopie en zegt meteen of hij het spel beslist.
+    /// Een val kan alleen voor de zetter winnen; een pop kan ook de ander
+    /// vier geven, en dan is het verlies — tenzij de zetter zelf ook vier
+    /// heeft, want dan wint wie trok.
+    private func apply(_ move: GameMove, to board: Board, player: Int) -> (Board, Outcome)? {
+        var copy = board
+        switch move {
+        case .drop(let column):
+            guard let cell = copy.drop(player: player, in: column) else { return nil }
+            return (copy, copy.winningLine(through: cell) != nil ? .win : .open)
+        case .pop(let column):
+            guard copy.pop(player: player, from: column) else { return nil }
+            if copy.winningLine(for: player) != nil { return (copy, .win) }
+            if copy.winningLine(for: 1 - player) != nil { return (copy, .loss) }
+            return (copy, .open)
+        }
+    }
+
+    private func negamax(board: Board, player: Int, depth: Int, alpha: Int, beta: Int, variant: GameVariant) -> Int {
+        let moves = legalMoves(board: board, player: player, variant: variant)
+        if moves.isEmpty { return 0 }
         if depth == 0 { return evaluate(board: board, for: player) }
 
         var alpha = alpha
         var best = Int.min + 1
-        for column in orderedColumns(board.availableColumns) {
-            var copy = board
-            guard let cell = copy.drop(player: player, in: column) else { continue }
+        for move in moves {
+            guard let (copy, outcome) = apply(move, to: board, player: player) else { continue }
             let score: Int
-            if copy.winningLine(through: cell) != nil {
-                // Sneller winnen is beter; de diepte houdt dat verschil vast.
-                score = 100_000 + depth
-            } else {
-                score = -negamax(board: copy, player: 1 - player, depth: depth - 1, alpha: -beta, beta: -alpha)
+            switch outcome {
+            // Sneller winnen is beter; de diepte houdt dat verschil vast.
+            case .win: score = 100_000 + depth
+            case .loss: score = -(100_000 + depth)
+            case .open:
+                score = -negamax(board: copy, player: 1 - player, depth: depth - 1, alpha: -beta, beta: -alpha, variant: variant)
             }
             best = max(best, score)
             alpha = max(alpha, score)

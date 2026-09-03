@@ -46,6 +46,15 @@ struct RulesView: View {
                         }
                     }
 
+                    section("POP-OUT") {
+                        card {
+                            bullet("arrow.down.to.line", String(localized: "In deze spelvorm mag je ook een steen van jouw kleur onderuit een kolom trekken. Alles erboven zakt een vakje."))
+                            bullet("exclamationmark.triangle.fill", String(localized: "Pas op: door het zakken kan de ander ineens vier op een rij hebben — dan wint de ander!"))
+                            bullet("crown.fill", String(localized: "Hebben jullie na een pop allebei vier? Dan wint wie de steen wegtrok."))
+                            bullet("figure.2.and.child.holdinghands", String(localized: "Hoort bij de Gezinsversie."))
+                        }
+                    }
+
                     section("SLIMME TRUCJES") {
                         card {
                             bullet("lightbulb.fill", String(localized: "De middelste kolom is goud waard: daar passen de meeste rijtjes doorheen."))

@@ -125,6 +125,7 @@ struct PaywallView: View {
                         .multilineTextAlignment(.center)
 
                     VStack(alignment: .leading, spacing: m.gutter * 0.7) {
+                        feature("arrow.up.and.down", "Spelvorm Pop-out", "Trek ook stenen onderuit het bord")
                         feature("graduationcap.fill", "Drie tegenstanders", "Dommel, Robbie en Professor Punt")
                         feature("paintpalette.fill", "Alle kleurenthema's", "Snoep, Oceaan en Nacht")
                         feature("chart.bar.fill", "Statistieken en trofeeën", "Per speler, met winreeks en snelste winst")

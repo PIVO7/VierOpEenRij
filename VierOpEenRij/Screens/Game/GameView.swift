@@ -47,7 +47,10 @@ struct GameView: View {
                     discIndex: engine.discIndex(for:),
                     playerName: { engine.players[$0].name },
                     isEnabled: engine.canDrop,
-                    onDrop: drop
+                    popColumns: engine.poppableColumns,
+                    showsPopStrip: engine.variant == .popOut,
+                    onDrop: drop,
+                    onPop: pop
                 )
 
                 Spacer(minLength: 0)
@@ -102,10 +105,16 @@ struct GameView: View {
         }
         .onChange(of: engine.moves.count) { oldCount, newCount in
             // Hier en niet op de knop: zo plopt het ook als de computer een
-            // steen laat vallen. Bij een terugzet blijft het stil.
-            guard newCount > oldCount else { return }
+            // steen laat vallen. Bij een terugzet blijft het stil, en een
+            // pop heeft zijn eigen geluid.
+            guard newCount > oldCount, engine.lastDrop != nil else { return }
             dropPulse += 1
             SoundPlayer.shared.play(.drop)
+        }
+        .onChange(of: engine.popPulse) { _, _ in
+            dropPulse += 1
+            SoundPlayer.shared.play(.turn)
+            AccessibilityNotification.Announcement(String(localized: "Steen weggetrokken, de kolom zakt")).post()
         }
         .onChange(of: engine.isFinished) { _, finished in
             guard finished else { return }
@@ -190,6 +199,10 @@ struct GameView: View {
 
     private func drop(in column: Int) {
         engine.dropDisc(in: column)
+    }
+
+    private func pop(from column: Int) {
+        engine.popDisc(from: column)
     }
 
     private func undoLastMove() {

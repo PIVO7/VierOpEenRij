@@ -11,36 +11,85 @@ struct BoardView: View {
     /// Spelerindex → naam; voedt de VoiceOver-beschrijving per kolom.
     let playerName: (Int) -> String
     let isEnabled: Bool
+    /// Pop-out: de kolommen waar de speler aan zet zijn eigen steen onderuit
+    /// mag trekken. Leeg buiten de spelvorm en buiten zijn beurt.
+    var popColumns: [Int] = []
+    /// Ruimte onder het bord voor de trekhendels, ook als er nu niets te
+    /// trekken valt — anders springt het bord bij elke beurt op en neer.
+    var showsPopStrip = false
     let onDrop: (Int) -> Void
+    var onPop: (Int) -> Void = { _ in }
 
     @Environment(\.metrics) private var m
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    /// Hoogte van de hendelstrook, in vakjes.
+    private static let popStripFactor: CGFloat = 0.8
 
     var body: some View {
         GeometryReader { proxy in
             let cell = cellSize(for: proxy.size)
             let boardWidth = cell * CGFloat(Board.columns) + m.boardGap * CGFloat(Board.columns - 1) + m.boardPadding * 2
             let boardHeight = cell * CGFloat(Board.rows) + m.boardGap * CGFloat(Board.rows - 1) + m.boardPadding * 2
+            let strip = showsPopStrip ? cell * Self.popStripFactor : 0
 
-            ZStack {
-                boardFace(width: boardWidth, height: boardHeight, cell: cell)
-                discLayer(width: boardWidth, height: boardHeight, cell: cell)
-                columnButtons(width: boardWidth, height: boardHeight, cell: cell)
+            VStack(spacing: 0) {
+                ZStack {
+                    boardFace(width: boardWidth, height: boardHeight, cell: cell)
+                    discLayer(width: boardWidth, height: boardHeight, cell: cell)
+                    columnButtons(width: boardWidth, height: boardHeight, cell: cell)
+                }
+                .frame(width: boardWidth, height: boardHeight)
+
+                if showsPopStrip {
+                    popStrip(width: boardWidth, height: strip, cell: cell)
+                }
             }
-            .frame(width: boardWidth, height: boardHeight)
+            .frame(width: boardWidth, height: boardHeight + strip)
             .position(x: proxy.size.width / 2, y: proxy.size.height / 2)
         }
         .aspectRatio(aspectRatio, contentMode: .fit)
     }
 
+    private var rowsWithStrip: CGFloat {
+        CGFloat(Board.rows) + (showsPopStrip ? Self.popStripFactor : 0)
+    }
+
     private var aspectRatio: CGFloat {
-        CGFloat(Board.columns) / CGFloat(Board.rows)
+        CGFloat(Board.columns) / rowsWithStrip
     }
 
     private func cellSize(for size: CGSize) -> CGFloat {
         let widthWise = (size.width - m.boardPadding * 2 - m.boardGap * CGFloat(Board.columns - 1)) / CGFloat(Board.columns)
-        let heightWise = (size.height - m.boardPadding * 2 - m.boardGap * CGFloat(Board.rows - 1)) / CGFloat(Board.rows)
+        let heightWise = (size.height - m.boardPadding * 2 - m.boardGap * CGFloat(Board.rows - 1)) / rowsWithStrip
         return max(min(widthWise, heightWise), 10)
+    }
+
+    /// De trekhendels onder het bord: één per kolom waar de speler aan zet
+    /// een eigen steen onderin heeft. Een koraal knopje met een pijl omlaag,
+    /// precies onder zijn kolom.
+    private func popStrip(width: CGFloat, height: CGFloat, cell: CGFloat) -> some View {
+        ZStack {
+            ForEach(popColumns, id: \.self) { column in
+                Button {
+                    onPop(column)
+                } label: {
+                    Image(systemName: "arrow.down.to.line")
+                        .font(.system(size: cell * 0.34, weight: .black))
+                        .foregroundStyle(AppTheme.ink)
+                        .frame(width: cell * 0.86, height: height * 0.7)
+                }
+                .buttonStyle(ToyButtonStyle(fill: AppTheme.tintCoral, radius: m.cellCorner, depth: m.shallowDepth, border: m.thinBorder + 0.5))
+                .disabled(!isEnabled)
+                .position(
+                    x: m.boardPadding + cell / 2 + CGFloat(column) * (cell + m.boardGap),
+                    y: height / 2 + m.boardGap * 0.5
+                )
+                .accessibilityLabel(String(localized: "Trek je steen uit kolom \(column + 1)"))
+            }
+        }
+        .frame(width: width, height: height)
+        .animation(.easeOut(duration: 0.15), value: popColumns)
     }
 
     /// Middelpunt van een vakje; rij 0 ligt onderaan.

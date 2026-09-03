@@ -60,6 +60,41 @@ struct Board: Equatable, Codable {
         grid[column][filled - 1] = nil
     }
 
+    // MARK: - Pop-out
+
+    /// Mag deze speler de onderste steen van deze kolom wegtrekken? Alleen
+    /// een steen van je eigen kleur.
+    func canPop(player: Int, from column: Int) -> Bool {
+        self[column, 0] == player
+    }
+
+    func poppableColumns(for player: Int) -> [Int] {
+        (0..<Self.columns).filter { canPop(player: player, from: $0) }
+    }
+
+    /// Trekt de onderste steen uit een kolom; alles erboven zakt een vakje.
+    @discardableResult
+    mutating func pop(player: Int, from column: Int) -> Bool {
+        guard canPop(player: player, from: column) else { return false }
+        grid[column].removeFirst()
+        grid[column].append(nil)
+        return true
+    }
+
+    /// De winnende rij van precies deze speler, waar ook op het bord. Na een
+    /// pop kunnen beide kleuren tegelijk vier hebben; wie er dan wint,
+    /// beslist de engine.
+    func winningLine(for player: Int) -> [Cell]? {
+        for column in 0..<Self.columns {
+            for row in 0..<height(of: column) where grid[column][row] == player {
+                if let line = winningLine(through: Cell(column: column, row: row)) {
+                    return line
+                }
+            }
+        }
+        return nil
+    }
+
     /// De vier windrichtingen die een rij kunnen vormen; de tegenrichting
     /// wordt bij het zoeken meegenomen.
     private static let directions = [(1, 0), (0, 1), (1, 1), (1, -1)]
@@ -100,12 +135,18 @@ struct Board: Equatable, Codable {
     }
 
     /// Bouwt het bord opnieuw op uit een zettenlijst. Ongeldige zetten (volle
-    /// of onbestaande kolom) leveren `nil`: dat bewaarde spel is corrupt.
-    static func replaying(moves: [Int], startingPlayer: Int) -> Board? {
+    /// of onbestaande kolom, een pop buiten Pop-out of van andermans steen)
+    /// leveren `nil`: dat bewaarde spel is corrupt.
+    static func replaying(moves: [Int], startingPlayer: Int, allowingPops: Bool = false) -> Board? {
         var board = Board()
-        for (index, column) in moves.enumerated() {
+        for (index, encoded) in moves.enumerated() {
             let player = (startingPlayer + index) % 2
-            guard board.drop(player: player, in: column) != nil else { return nil }
+            switch GameMove(encoded: encoded) {
+            case .drop(let column):
+                guard board.drop(player: player, in: column) != nil else { return nil }
+            case .pop(let column):
+                guard allowingPops, board.pop(player: player, from: column) else { return nil }
+            }
         }
         return board
     }

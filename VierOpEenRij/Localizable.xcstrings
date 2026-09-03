@@ -369,6 +369,22 @@
         }
       }
     },
+    "Hebben jullie na een pop allebei vier? Dan wint wie de steen wegtrok." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Both have four after a pop? Then whoever pulled the disc wins."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous avez tous les deux quatre après un retrait ? C'est celui qui a retiré le jeton qui gagne."
+          }
+        }
+      }
+    },
     "Hier komt de trofeeënkast van %@" : {
       "localizations" : {
         "en" : {
@@ -381,6 +397,70 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La vitrine à trophées de %@ commence ici"
+          }
+        }
+      }
+    },
+    "Hoort bij de Gezinsversie." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Part of the Family Version."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fait partie de la Version Famille."
+          }
+        }
+      }
+    },
+    "In deze spelvorm mag je ook een steen van jouw kleur onderuit een kolom trekken. Alles erboven zakt een vakje." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In this mode you may also pull a disc of your colour out from the bottom of a column. Everything above drops one space."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dans cette variante, tu peux aussi retirer un jeton de ta couleur par le bas d'une colonne. Tout ce qui est au-dessus descend d'une case."
+          }
+        }
+      }
+    },
+    "KIES DE SPELVORM" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CHOOSE THE GAME MODE"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CHOISIS LA VARIANTE"
+          }
+        }
+      }
+    },
+    "Laat vallen tot er vier liggen" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drop until four line up"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fais tomber jusqu'à en aligner quatre"
           }
         }
       }
@@ -2341,6 +2421,22 @@
         }
       }
     },
+    "Pas op: door het zakken kan de ander ineens vier op een rij hebben — dan wint de ander!" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Careful: as discs drop, the other player may suddenly have four in a row — and then they win!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attention : en descendant, l'autre peut soudain avoir quatre à la suite — et c'est lui qui gagne !"
+          }
+        }
+      }
+    },
     "Per ongeluk getikt? Met Zet terug mag je vorige steen er weer uit." : {
       "localizations" : {
         "en" : {
@@ -2385,6 +2481,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Empreinte"
+          }
+        }
+      }
+    },
+    "Pop-out" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pop-out"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pop-out"
+          }
+        }
+      }
+    },
+    "POP-OUT" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "POP-OUT"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "POP-OUT"
           }
         }
       }
@@ -2549,6 +2677,22 @@
         }
       }
     },
+    "Spelvorm Pop-out" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pop-out mode"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Variante Pop-out"
+          }
+        }
+      }
+    },
     "Statistieken en trofeeën" : {
       "localizations" : {
         "en" : {
@@ -2561,6 +2705,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Statistiques et trophées"
+          }
+        }
+      }
+    },
+    "Steen weggetrokken, de kolom zakt" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disc pulled out, the column drops"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeton retiré, la colonne descend"
           }
         }
       }
@@ -2978,6 +3138,54 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "THÈME"
+          }
+        }
+      }
+    },
+    "Trek je steen uit kolom %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pull your disc out of column %lld"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retire ton jeton de la colonne %lld"
+          }
+        }
+      }
+    },
+    "Trek ook stenen onderuit" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pull discs out from below too"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retire aussi des jetons par le bas"
+          }
+        }
+      }
+    },
+    "Trek ook stenen onderuit het bord" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pull discs out from the bottom of the board too"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retire aussi des jetons par le bas du plateau"
           }
         }
       }

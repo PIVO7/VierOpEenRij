@@ -5,6 +5,7 @@ import Observation
 @Observable
 final class GameEngine {
     let mode: GameMode
+    let variant: GameVariant
     private(set) var players: [GamePlayer]
     private(set) var board: Board
     let startingPlayerIndex: Int
@@ -24,6 +25,8 @@ final class GameEngine {
     private(set) var saveVersion = 0
     /// True kort nadat de beurt wisselde — UI toont de banner.
     private(set) var turnJustChanged = false
+    /// Bumps bij een pop; de UI hangt er een eigen geluid aan.
+    private(set) var popPulse = 0
 
     private var rng: SplitMix64
     private let computerAI: ComputerAI
@@ -40,6 +43,13 @@ final class GameEngine {
         !isFinished && !isThinking && !currentPlayer.isComputer
     }
 
+    /// Pop-out: de kolommen waar de speler aan zet zijn eigen steen onderuit
+    /// mag trekken. Leeg in de klassieke spelvorm en buiten zijn beurt.
+    var poppableColumns: [Int] {
+        guard variant == .popOut, canDrop else { return [] }
+        return board.poppableColumns(for: currentPlayerIndex)
+    }
+
     /// De vorige zet mag terug zolang het spel loopt en er een eigen zet te
     /// herroepen valt. Solo draait ook de tegenzet van de computer mee
     /// terug — en ook terwijl de computer nog nadenkt hoeft een kind niet te
@@ -49,14 +59,15 @@ final class GameEngine {
         return moves.indices.contains { !players[playerIndex(forMove: $0)].isComputer }
     }
 
-    /// Aantal stenen dat deze speler zelf al legde.
+    /// Aantal stenen dat deze speler zelf al liet vallen; een pop telt niet.
     func discCount(of playerIndex: Int) -> Int {
-        moves.indices.count(where: { self.playerIndex(forMove: $0) == playerIndex })
+        moves.indices.count(where: { self.playerIndex(forMove: $0) == playerIndex && moves[$0] >= 0 })
     }
 
     var snapshot: GameSnapshot {
         GameSnapshot(
             mode: mode,
+            variant: variant,
             players: players,
             startingPlayerIndex: startingPlayerIndex,
             moves: moves,
@@ -67,12 +78,14 @@ final class GameEngine {
 
     init(
         mode: GameMode,
+        variant: GameVariant = .classic,
         profiles: [PlayerProfile],
         startingPlayerIndex: Int = 0,
         seed: UInt64? = nil,
         computerAI: ComputerAI = ComputerAI()
     ) {
         self.mode = mode
+        self.variant = variant
         self.players = profiles.map(GamePlayer.init)
         self.board = Board()
         self.startingPlayerIndex = min(max(startingPlayerIndex, 0), max(profiles.count - 1, 0))
@@ -84,25 +97,27 @@ final class GameEngine {
 
     init(snapshot: GameSnapshot, seed: UInt64? = nil, computerAI: ComputerAI = ComputerAI()) {
         self.mode = snapshot.mode
+        // Bewaarde spellen van vóór de spelvormen zijn klassiek.
+        self.variant = snapshot.variant ?? .classic
         self.players = snapshot.players
         self.startingPlayerIndex = min(max(snapshot.startingPlayerIndex, 0), max(snapshot.players.count - 1, 0))
         self.moves = snapshot.moves
-        self.board = Board.replaying(moves: snapshot.moves, startingPlayer: self.startingPlayerIndex) ?? Board()
+        self.board = Board.replaying(
+            moves: snapshot.moves,
+            startingPlayer: self.startingPlayerIndex,
+            allowingPops: self.variant == .popOut
+        ) ?? Board()
         self.currentPlayerIndex = (self.startingPlayerIndex + snapshot.moves.count) % max(snapshot.players.count, 1)
         self.computerAI = computerAI
         self.rng = SplitMix64(seed: seed ?? UInt64.random(in: .min ... .max))
         self.turnMessage = snapshot.turnMessage
 
-        if let column = moves.last {
-            let row = board.height(of: column) - 1
-            lastDrop = Board.Cell(column: column, row: max(row, 0))
-        }
+        lastDrop = Self.landingCell(ofLastMoveIn: moves, on: board)
         // Een bewaard spel dat toch al uit was, netjes afronden in plaats van
         // laten doorspelen.
-        if let line = board.winningLine() {
-            let winnerIndex = (startingPlayerIndex + moves.count - 1) % players.count
+        if !moves.isEmpty, let (winnerIndex, line) = winner(afterMoveBy: playerIndex(forMove: moves.count - 1)) {
             finishGame(winnerIndex: winnerIndex, line: line)
-        } else if board.isFull {
+        } else if !hasLegalMove(for: currentPlayerIndex) {
             finishGame(winnerIndex: nil, line: [])
         }
     }
@@ -115,22 +130,27 @@ final class GameEngine {
         return applyDrop(in: column)
     }
 
+    /// Pop-out: trekt de eigen steen onderuit een kolom. Meldt of het echt
+    /// gebeurde — buiten de spelvorm of op andermans steen gebeurt er niets.
+    @discardableResult
+    func popDisc(from column: Int) -> Bool {
+        guard variant == .popOut, canDrop else { return false }
+        return applyPop(from: column)
+    }
+
     func undoLastMove() {
         guard canUndo else { return }
         // Minstens één zet terug, en daarna verder tot er weer een mens aan
         // de beurt is: solo verdwijnt zo ook het antwoord van de computer.
         repeat {
-            guard let column = moves.popLast() else { break }
-            board.removeTop(of: column)
+            guard moves.popLast() != nil else { break }
         } while players[(startingPlayerIndex + moves.count) % players.count].isComputer && !moves.isEmpty
 
+        // Opnieuw afspelen in plaats van de bovenste steen weghalen: na een
+        // pop is de hele kolom verschoven en klopt "de bovenste" niet meer.
+        board = Board.replaying(moves: moves, startingPlayer: startingPlayerIndex, allowingPops: variant == .popOut) ?? Board()
         currentPlayerIndex = (startingPlayerIndex + moves.count) % players.count
-        if let column = moves.last {
-            let row = board.height(of: column) - 1
-            lastDrop = Board.Cell(column: column, row: max(row, 0))
-        } else {
-            lastDrop = nil
-        }
+        lastDrop = Self.landingCell(ofLastMoveIn: moves, on: board)
         turnMessage = String(localized: "\(currentPlayer.name) is aan de beurt")
         markDirty()
     }
@@ -152,14 +172,18 @@ final class GameEngine {
                 isThinking = false
                 return
             }
-            let column = computerAI.chooseColumn(
+            let move = computerAI.chooseMove(
                 board: board,
                 player: currentPlayerIndex,
                 level: currentPlayer.computerLevel ?? .medium,
+                variant: variant,
                 using: &rng
             )
             isThinking = false
-            applyDrop(in: column)
+            switch move {
+            case .drop(let column): applyDrop(in: column)
+            case .pop(let column): applyPop(from: column)
+            }
             // De steen even laten landen voor een eventuele volgende beurt.
             try? await Task.sleep(for: .milliseconds(Self.dropDuration))
         }
@@ -188,18 +212,60 @@ final class GameEngine {
     @discardableResult
     private func applyDrop(in column: Int) -> Bool {
         guard let cell = board.drop(player: currentPlayerIndex, in: column) else { return false }
-        moves.append(column)
+        moves.append(GameMove.drop(column).encoded)
         lastDrop = cell
 
         if let line = board.winningLine(through: cell) {
             finishGame(winnerIndex: currentPlayerIndex, line: line)
-        } else if board.isFull {
+        } else if !hasLegalMove(for: (currentPlayerIndex + 1) % players.count) {
             finishGame(winnerIndex: nil, line: [])
         } else {
             advanceTurn()
         }
         markDirty()
         return true
+    }
+
+    @discardableResult
+    private func applyPop(from column: Int) -> Bool {
+        guard board.pop(player: currentPlayerIndex, from: column) else { return false }
+        moves.append(GameMove.pop(column).encoded)
+        // De hele kolom schoof; geen enkele steen is "net geland".
+        lastDrop = nil
+        popPulse += 1
+
+        if let (winnerIndex, line) = winner(afterMoveBy: currentPlayerIndex) {
+            finishGame(winnerIndex: winnerIndex, line: line)
+        } else if !hasLegalMove(for: (currentPlayerIndex + 1) % players.count) {
+            finishGame(winnerIndex: nil, line: [])
+        } else {
+            advanceTurn()
+        }
+        markDirty()
+        return true
+    }
+
+    /// Wie er na deze zet vier op een rij heeft. Na een pop kunnen dat beide
+    /// kleuren tegelijk zijn; dan wint wie de zet deed — het was zijn keuze.
+    /// Alleen de ander vier? Dan heeft de trekker zichzelf verslagen.
+    private func winner(afterMoveBy mover: Int) -> (Int, [Board.Cell])? {
+        if let line = board.winningLine(for: mover) { return (mover, line) }
+        let other = (mover + 1) % players.count
+        if let line = board.winningLine(for: other) { return (other, line) }
+        return nil
+    }
+
+    /// Klassiek is een vol bord het einde; bij Pop-out kan wie nog een eigen
+    /// steen onderin heeft gewoon verder.
+    private func hasLegalMove(for player: Int) -> Bool {
+        !board.isFull || (variant == .popOut && !board.poppableColumns(for: player).isEmpty)
+    }
+
+    /// Het vakje waar de laatste steen landde, voor de highlight. Na een pop
+    /// is er geen.
+    private static func landingCell(ofLastMoveIn moves: [Int], on board: Board) -> Board.Cell? {
+        guard let last = moves.last, case .drop(let column) = GameMove(encoded: last) else { return nil }
+        return Board.Cell(column: column, row: max(board.height(of: column) - 1, 0))
     }
 
     private func advanceTurn() {

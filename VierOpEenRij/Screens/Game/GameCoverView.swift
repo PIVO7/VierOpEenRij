@@ -22,6 +22,7 @@ struct GameCoverView: View {
                 // Wie vorige keer tweede was, mag nu beginnen.
                 let fresh = GameEngine(
                     mode: engine.mode,
+                    variant: engine.variant,
                     profiles: engine.rematchProfiles(),
                     startingPlayerIndex: (engine.startingPlayerIndex + 1) % max(engine.players.count, 1)
                 )

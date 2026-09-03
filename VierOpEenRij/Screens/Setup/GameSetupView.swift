@@ -50,7 +50,7 @@ struct GameSetupView: View {
                             .foregroundStyle(AppTheme.ink)
                             .frame(width: m.tapTarget, height: m.tapTarget)
                     }
-                    .buttonStyle(ToyButtonStyle(fill: AppTheme.tintSky, radius: m.cellCorner, depth: 3, border: m.thinBorder))
+                    .buttonStyle(ToyButtonStyle(fill: AppTheme.tintSky, radius: m.cellCorner, depth: m.shallowDepth, border: m.thinBorder))
                     .sheet(isPresented: $showRules) {
                         RulesView()
                             .appMetrics()
@@ -63,23 +63,36 @@ struct GameSetupView: View {
 
                 if profileStore.humanProfiles.isEmpty {
                     VStack(spacing: m.gutter) {
-                        ContentUnavailableView(
-                            "Geen profielen",
-                            systemImage: "person.crop.circle.badge.plus",
-                            description: Text("Maak eerst een profiel aan om te spelen.")
-                        )
-                        .foregroundStyle(AppTheme.soft)
+                        // Eigen kaartje in de speelgoedstijl in plaats van
+                        // ContentUnavailableView met systeemtypografie.
+                        VStack(spacing: m.gutter * 0.6) {
+                            Image(systemName: "person.crop.circle.badge.plus")
+                                .font(.system(size: m.avatarSize * 0.62, weight: .black))
+                                .foregroundStyle(AvatarBadge.palette[4])
+                                .frame(width: m.avatarSize * 1.3, height: m.avatarSize * 1.3)
+                                .toyBlock(fill: AppTheme.card, radius: m.cellCorner, depth: 0, border: m.thinBorder + 0.5)
+                            Text("Geen profielen")
+                                .font(AppTheme.rounded(m.bodySize + 4))
+                                .foregroundStyle(AppTheme.ink)
+                            Text("Maak eerst een profiel aan om te spelen.")
+                                .font(AppTheme.rounded(m.captionSize + 1, .bold))
+                                .foregroundStyle(AppTheme.cardSoft)
+                                .multilineTextAlignment(.center)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(m.gutter * 1.4)
+                        .toyBlock(fill: AppTheme.card, radius: m.cardCorner, depth: m.depth, border: m.border)
 
                         NavigationLink(value: Destination.profiles) {
                             Text("Naar profielen")
-                                .font(AppTheme.rounded(m.buttonTextSize * 0.85))
+                                .font(AppTheme.rounded(m.defaultButton.textSize))
                                 .foregroundStyle(AppTheme.ink)
                                 .frame(maxWidth: .infinity)
-                                .frame(height: m.buttonHeight * 0.9)
+                                .frame(height: m.defaultButton.height)
                         }
                         .buttonStyle(ToyButtonStyle(
                             fill: AppTheme.mint,
-                            radius: m.cardCorner * 0.8,
+                            radius: m.buttonCorner,
                             depth: m.depth,
                             border: m.border
                         ))
@@ -110,14 +123,14 @@ struct GameSetupView: View {
                         Text(mode == .versusComputer
                              ? LocalizedStringKey("Of speel als gast")
                              : LocalizedStringKey("Of speel met twee gasten"))
-                            .font(AppTheme.rounded(m.buttonTextSize * 0.75))
+                            .font(AppTheme.rounded(m.compactButton.textSize))
                             .foregroundStyle(AppTheme.ink)
                             .frame(maxWidth: .infinity)
-                            .frame(height: m.buttonHeight * 0.82)
+                            .frame(height: m.compactButton.height)
                     }
                     .buttonStyle(ToyButtonStyle(
                         fill: AppTheme.card,
-                        radius: m.cardCorner * 0.8,
+                        radius: m.buttonCorner,
                         depth: m.depth,
                         border: m.border
                     ))
@@ -154,15 +167,15 @@ struct GameSetupView: View {
 
                     Button(action: requestStart) {
                         Text("Start spel")
-                            .font(AppTheme.rounded(m.buttonTextSize))
+                            .font(AppTheme.rounded(m.heroButton.textSize))
                             .foregroundStyle(canStart ? AppTheme.ink : AppTheme.offInk)
                             .frame(maxWidth: .infinity)
-                            .frame(height: m.buttonHeight * 0.96)
+                            .frame(height: m.heroButton.height)
                     }
                     .buttonStyle(ToyButtonStyle(
                         fill: canStart ? AppTheme.mint : AppTheme.offFill,
-                        radius: m.cardCorner * 0.9,
-                        depth: m.depth + 1,
+                        radius: m.buttonCorner,
+                        depth: m.heroDepth,
                         border: m.border
                     ))
                     .disabled(!canStart)
@@ -234,9 +247,10 @@ struct GameSetupView: View {
         }
         .buttonStyle(ToyButtonStyle(
             fill: picked ? AppTheme.tintCoral : AppTheme.card,
-            radius: m.cardCorner * 0.9,
+            radius: m.cardCorner,
             depth: m.depth,
-            border: m.border
+            border: m.border,
+            borderColor: picked ? AppTheme.coral : AppTheme.ink
         ))
         .accessibilityAddTraits(picked ? .isSelected : [])
     }
@@ -287,9 +301,10 @@ struct GameSetupView: View {
         }
         .buttonStyle(ToyButtonStyle(
             fill: picked ? AppTheme.tintCoral : AppTheme.card,
-            radius: m.cardCorner * 0.9,
-            depth: picked ? m.depth : 3,
-            border: m.border
+            radius: m.cardCorner,
+            depth: picked ? m.depth : m.shallowDepth,
+            border: m.border,
+            borderColor: picked ? AppTheme.coral : AppTheme.ink
         ))
         .accessibilityLabel(
             locked

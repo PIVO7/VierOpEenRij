@@ -64,7 +64,7 @@ struct BoardView: View {
             }
         }
         .frame(width: width, height: height)
-        .toyBlock(fill: AppTheme.sky, radius: m.cardCorner, depth: m.depth + 1, border: m.border)
+        .toyBlock(fill: AppTheme.sky, radius: m.cardCorner, depth: m.heroDepth, border: m.border)
     }
 
     private func discLayer(width: CGFloat, height: CGFloat, cell: CGFloat) -> some View {

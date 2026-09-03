@@ -21,7 +21,7 @@ struct GameHeaderView: View {
         .padding(.horizontal, 10)
         .padding(.vertical, m.gutter * 0.45)
         .frame(maxWidth: .infinity)
-        .toyBlock(fill: AppTheme.card, radius: m.cellCorner + 3, depth: 3, border: m.thinBorder + 0.5)
+        .toyBlock(fill: AppTheme.card, radius: m.buttonCorner, depth: m.shallowDepth, border: m.thinBorder + 0.5)
     }
 
     private func chip(for player: GamePlayer, index: Int) -> some View {
@@ -43,7 +43,7 @@ struct GameHeaderView: View {
         )
         .overlay {
             RoundedRectangle(cornerRadius: m.cellCorner, style: .continuous)
-                .strokeBorder(isMine ? AppTheme.coral : .clear, lineWidth: m.thinBorder)
+                .strokeBorder(isMine ? AppTheme.coral : .clear, lineWidth: m.border)
         }
         .frame(maxWidth: .infinity)
         .accessibilityElement(children: .combine)

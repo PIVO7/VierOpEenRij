@@ -147,7 +147,7 @@ struct HomeView: View {
                         .foregroundStyle(AppTheme.ink)
                         .frame(width: m.tapTarget, height: m.tapTarget)
                 }
-                .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: 3, border: m.thinBorder))
+                .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: m.shallowDepth, border: m.thinBorder))
                 .padding(.trailing, m.gutter * 1.5)
                 .padding(.top, m.gutter * 0.5)
             }
@@ -179,7 +179,7 @@ struct HomeView: View {
         HStack(spacing: m.gutter) {
             DiscView(colorIndex: discColorIndex, size: m.avatarSize * 0.66)
                 .frame(width: m.avatarSize + 2, height: m.avatarSize + 2)
-                .toyBlock(fill: tint, radius: m.cellCorner + 2, depth: 0, border: m.thinBorder + 0.5)
+                .toyBlock(fill: tint, radius: m.cellCorner, depth: 0, border: m.thinBorder + 0.5)
 
             VStack(alignment: .leading, spacing: 3) {
                 if let badge {
@@ -207,7 +207,7 @@ struct HomeView: View {
                 .font(.system(size: m.bodySize * 0.9, weight: .black))
                 .foregroundStyle(AppTheme.cardDim)
         }
-        .padding(m.gutter * 1.15)
+        .padding(m.gutter)
         .toyBlock(fill: cardFill, radius: m.cardCorner, depth: m.depth, border: m.border)
     }
 

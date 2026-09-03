@@ -125,16 +125,28 @@ struct GameView: View {
 
     // MARK: - Deelviews
 
-    /// De staande spelstand onder de kop: wie er mag, of dat de computer
-    /// nadenkt. Tijdens het eindscherm draagt de overlay de boodschap.
+    /// De spelstand als toy-chip onder de kop: wie er mag, of dat de
+    /// computer nadenkt. Het kleuraccent volgt de uitkomst — coral bij vier
+    /// op een rij, amber bij een vol bord — zodat een kind één duidelijk
+    /// "ding" heeft om naar te kijken. Tijdens het eindscherm draagt de
+    /// overlay de boodschap.
     private var statusLine: some View {
         Text(engine.turnMessage)
             .font(AppTheme.rounded(m.bodySize, .bold))
-            .foregroundStyle(AppTheme.soft)
+            .foregroundStyle(AppTheme.ink)
             .lineLimit(1)
             .minimumScaleFactor(0.7)
+            .padding(.horizontal, m.gutter)
+            .padding(.vertical, m.gutter * 0.45)
             .frame(maxWidth: .infinity)
+            .toyBlock(fill: statusFill, radius: m.cellCorner, depth: m.shallowDepth, border: m.thinBorder + 0.5)
+            .animation(.easeOut(duration: 0.15), value: engine.turnMessage)
             .opacity(showResult ? 0 : 1)
+    }
+
+    private var statusFill: Color {
+        guard engine.isFinished else { return AppTheme.card }
+        return engine.isDraw ? AppTheme.tintAmber : AppTheme.tintCoral
     }
 
     private var undoRow: some View {
@@ -148,8 +160,8 @@ struct GameView: View {
             }
             .buttonStyle(ToyButtonStyle(
                 fill: engine.canUndo ? AppTheme.card : AppTheme.offFill,
-                radius: m.cellCorner + 1,
-                depth: 3,
+                radius: m.cellCorner,
+                depth: m.shallowDepth,
                 border: m.thinBorder + 0.5
             ))
             .disabled(!engine.canUndo)
@@ -180,7 +192,7 @@ struct GameView: View {
                     .foregroundStyle(AppTheme.ink)
                     .frame(width: m.tapTarget, height: m.tapTarget)
             }
-            .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: 3, border: m.thinBorder))
+            .buttonStyle(ToyButtonStyle(fill: AppTheme.card, radius: m.cellCorner, depth: m.shallowDepth, border: m.thinBorder))
         }
     }
 

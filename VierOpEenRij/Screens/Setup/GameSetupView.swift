@@ -223,6 +223,7 @@ struct GameSetupView: View {
                 activeGame: $activeGame
             )
         }
+        .themeTrialNudge(after: activeGame)
     }
 
     /// De spelvorm: klassiek laten vallen, of Pop-out waarbij je ook stenen

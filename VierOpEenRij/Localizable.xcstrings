@@ -98,6 +98,22 @@
         }
       }
     },
+    "%@ proberen?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try %@?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Essayer %@ ?"
+          }
+        }
+      }
+    },
     "%@ verwijderen" : {
       "localizations" : {
         "en" : {
@@ -305,6 +321,38 @@
         }
       }
     },
+    "Bekijk de Gezinsversie" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See the Family Version"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir la Version Famille"
+          }
+        }
+      }
+    },
+    "Dat was %@ op proef" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "That was %@ on trial"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C'était %@ à l'essai"
+          }
+        }
+      }
+    },
     "Dommel, Robbie en Professor Punt" : {
       "localizations" : {
         "en" : {
@@ -381,6 +429,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vous avez tous les deux quatre après un retrait ? C'est celui qui a retiré le jeton qui gagne."
+          }
+        }
+      }
+    },
+    "Het thema staat weer op Klassiek. Met de Gezinsversie blijft %@ gewoon aan — en de andere thema's ook." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The theme is back to Classic. With the Family Version %@ simply stays on — and so do the other themes."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le thème est revenu à Classique. Avec la Version Famille, %@ reste activé — et les autres thèmes aussi."
           }
         }
       }
@@ -2066,6 +2130,22 @@
         }
       }
     },
+    "Niet nu" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not now"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pas maintenant"
+          }
+        }
+      }
+    },
     "NIEUW PROFIEL" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -2565,6 +2645,22 @@
         }
       }
     },
+    "Probeer één potje" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try one game"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Essayer une partie"
+          }
+        }
+      }
+    },
     "Professor Punt" : {
       "localizations" : {
         "en" : {
@@ -2657,6 +2753,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bonbon, Océan et Nuit"
+          }
+        }
+      }
+    },
+    "Speel één potje in dit thema. Daarna springt het terug naar Klassiek." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play one game in this theme. After that it switches back to Classic."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Joue une partie dans ce thème. Ensuite, il revient à Classique."
           }
         }
       }

@@ -50,8 +50,6 @@ struct GameView: View {
                     onDrop: drop
                 )
 
-                undoRow
-
                 Spacer(minLength: 0)
             }
             .padding(.horizontal, m.gutter)
@@ -126,10 +124,8 @@ struct GameView: View {
     // MARK: - Deelviews
 
     /// De spelstand als toy-chip onder de kop: wie er mag, of dat de
-    /// computer nadenkt. Het kleuraccent volgt de uitkomst — coral bij vier
-    /// op een rij, amber bij een vol bord — zodat een kind één duidelijk
-    /// "ding" heeft om naar te kijken. Tijdens het eindscherm draagt de
-    /// overlay de boodschap.
+    /// computer nadenkt. Tijdens het eindscherm draagt de overlay de
+    /// boodschap.
     private var statusLine: some View {
         Text(engine.turnMessage)
             .font(AppTheme.rounded(m.bodySize, .bold))
@@ -144,30 +140,11 @@ struct GameView: View {
             .opacity(showResult ? 0 : 1)
     }
 
+    /// Alleen het wachten op de computer krijgt een eigen kleur. Een steen
+    /// laten vallen is geen uitkomst zoals een treffer in Raak, en de winst
+    /// werd nooit gezien: het eindscherm schuift er meteen overheen.
     private var statusFill: Color {
-        guard engine.isFinished else { return AppTheme.card }
-        return engine.isDraw ? AppTheme.tintAmber : AppTheme.tintCoral
-    }
-
-    private var undoRow: some View {
-        HStack {
-            Button(action: undoLastMove) {
-                Label("Zet terug", systemImage: "arrow.uturn.backward")
-                    .font(AppTheme.rounded(m.captionSize + 1, .bold))
-                    .foregroundStyle(engine.canUndo ? AppTheme.ink : AppTheme.offInk)
-                    .padding(.horizontal, m.gutter)
-                    .frame(minHeight: m.tapTarget)
-            }
-            .buttonStyle(ToyButtonStyle(
-                fill: engine.canUndo ? AppTheme.card : AppTheme.offFill,
-                radius: m.cellCorner,
-                depth: m.shallowDepth,
-                border: m.thinBorder + 0.5
-            ))
-            .disabled(!engine.canUndo)
-
-            Spacer()
-        }
+        engine.isThinking ? AppTheme.tintSky : AppTheme.card
     }
 
     /// De dunne bovenrand: de steenteller (passieve meta-info) met de
@@ -184,6 +161,19 @@ struct GameView: View {
                 .foregroundStyle(AppTheme.faint)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 4)
+
+            // Alleen tonen wanneer terugzetten écht kan: een grijze knop
+            // leest als "je kunt niets doen", terwijl de beurt juist wacht.
+            if engine.canUndo {
+                Button(action: undoLastMove) {
+                    Label("Zet de vorige zet terug", systemImage: "arrow.uturn.backward")
+                        .labelStyle(.iconOnly)
+                        .font(.system(size: m.captionSize + 2, weight: .black))
+                        .foregroundStyle(AppTheme.ink)
+                        .frame(width: m.tapTarget, height: m.tapTarget)
+                }
+                .buttonStyle(ToyButtonStyle(fill: AppTheme.tintAmber, radius: m.cellCorner, depth: m.shallowDepth, border: m.thinBorder))
+            }
 
             Button(action: requestLeave) {
                 Label("Spel verlaten", systemImage: "xmark")
